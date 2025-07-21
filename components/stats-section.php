@@ -3,7 +3,7 @@
         <h2>welcome to our website</h2>
         <h3 class="w-50">We are a trusted accounting and financial consulting firm, helping individuals and businesses achieve
             success.</h3>
-        <a href="#" class="btn btn-gold">Request Consultation</a>
+        <button class="btn btn-gold">Request Consultation</button>
     </div>
     <div class="stats-container">
         <div class="stat-item">

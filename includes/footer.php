@@ -1,11 +1,44 @@
 <?php
-// Footer include
+// Optimized Footer include
 ?>
-<footer class="bg-light text-center text-lg-start mt-5">
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2024 Consulting. All rights reserved.
+<?php include 'components/contact-info-bar.php'; ?>
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="hero-bg-layer layer1"></div>
+    <div class="hero-bg-layer layer2"></div>
+    <div class="footer-content">
+      <img src="assets/images/footer-logo.svg" alt="Consulting Logo" class="footer-logo-img" />
+      <p class="footer-desc">
+        We provide comprehensive advisory services in legal, financial, and business domains, helping you make informed
+        decisions backed by deep expertise and market insight.
+      </p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="#" class="footer-social" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="footer-social" aria-label="X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="footer-copyright">
+        All Copy Rights Reserved For <span class="footer-bold">CONSULTING..</span> ~ 2025
+      </div>
+      <div class="footer-partner">
+        <span class="footer-partner-logo">
+          <img src="assets/images/PUIUX.svg" alt="Consulting Logo" class="footer-logo-img" />
+        </span>
+      </div>
+    </div>
   </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+
+</html>

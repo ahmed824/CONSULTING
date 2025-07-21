@@ -1,9 +1,9 @@
-<section class="our-categories position-relative">
-    <div class="categories-bg-gradient">
-        <div class="gradient1"></div>
-        <div class="gradient2"></div>
-    </div>
-    <div class="container-fluid">
+<section class="our-categories ">
+    <div class="container-fluid position-relative">
+        <div class="categories-bg-gradient">
+            <div class="gradient1"></div>
+            <div class="gradient2"></div>
+        </div>
         <div class="categories-grid">
             <div class="category-card" style="background-image: url('assets/images/img1.jpg');">
                 <div class="category-content">
@@ -47,15 +47,18 @@
     </div>
     <div class="call-to-action">
         <div class="container">
+            <div class="cta-bg"></div>
             <div class="cta-content">
                 <h2>welcome to our website</h2>
-                <h3 class="w-50">We are a trusted accounting and financial consulting firm, helping individuals and
+                <h3 class="w-75">We are a trusted accounting and financial consulting firm, helping individuals and
                     businesses achieve
                     success.</h3>
-                <a href="#" class="btn btn-gold">Request Consultation</a>
                 <p>We provide comprehensive advisory services in legal, financial, and business domains, helping you
                     make informed decisions backed by deep expertise and market insight.</p>
+                <button class="btn btn-gold">Request Consultation</button>
             </div>
         </div>
     </div>
 </section>
+
+ 

@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap");
+
+/* Arabic RTL Color palette */
+:root {
+  --dark-blue: #1a2a3a;
+  --nav-bg: #ffffff08;
+  --gold: #b68f0e;
+  --green: #2a8c82;
+  --white: #fff;
+  --nav-link: #bac0c7;
+  --nav-link-active: #e0b83b;
+}
+
+body {
+  direction: rtl;
+  font-family: 'Cairo', Arial, sans-serif;
+  text-align: right;
+  background-color: var(--white);
+}
+
+/* Flip text alignment and layout for RTL */
+.text-start {
+  text-align: right !important;
+}
+.text-end {
+  text-align: left !important;
+}
+
+/* Flip margin and padding for RTL */
+.mr-auto {
+  margin-left: auto !important;
+  margin-right: unset !important;
+}
+.ml-auto {
+  margin-right: auto !important;
+  margin-left: unset !important;
+}
+.pl-3 {
+  padding-right: 1rem !important;
+  padding-left: unset !important;
+}
+.pr-3 {
+  padding-left: 1rem !important;
+  padding-right: unset !important;
+}
+
+/* Navbar RTL adjustments */
+.navbar {
+  flex-direction: row-reverse;
+}
+.navbar-nav {
+  padding-right: 0;
+  padding-left: unset;
+}
+.navbar .nav-item {
+  margin-left: 1rem;
+  margin-right: unset;
+}
+
+/* List RTL adjustments */
+ul, ol {
+  padding-right: 2rem;
+  padding-left: unset;
+}
+li {
+  text-align: right;
+}
+
+/* Form RTL adjustments */
+input, textarea {
+  text-align: right;
+}
+label {
+  display: block;
+  text-align: right;
+}
+
+/* Button RTL adjustments */
+.btn {
+  text-align: right;
+}
+
+/* Utility classes for RTL spacing */
+.me-2 {
+  margin-left: 0.5rem !important;
+  margin-right: unset !important;
+}
+.ms-2 {
+  margin-right: 0.5rem !important;
+  margin-left: unset !important;
+}
+
+/* Add more RTL-specific overrides as needed */ 

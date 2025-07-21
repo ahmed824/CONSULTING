@@ -26,7 +26,7 @@
         decisions backed by deep expertise and market insight.
       </div>
       <div class="hero-btns">
-        <a href="#" class="btn btn-gold">Request Consultation</a>
+        <button class="btn btn-gold">Request Consultation</button>
         <div class="circle"><i class="fa-solid fa-arrow-right-long"></i></div>
         <a href="#" class="btn btn-outline-hero">Contact Us </a>
       </div>
