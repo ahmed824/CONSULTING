@@ -239,16 +239,160 @@ document.addEventListener('DOMContentLoaded', function() {
   const paypalFields = document.getElementById('paypalFields');
   const bankFields = document.getElementById('bankFields');
 
-  function updateFields() {
-    const selected = document.querySelector('input[name="payment_method"]:checked').value;
-    creditCardFields.style.display = selected === 'credit_card' ? 'flex' : 'none';
-    paypalFields.style.display = selected === 'paypal' ? 'flex' : 'none';
-    bankFields.style.display = selected === 'bank_transfer' ? 'flex' : 'none';
+  if (methodRadios.length > 0) {
+    function updateFields() {
+      const selected = document.querySelector('input[name="payment_method"]:checked').value;
+      creditCardFields.style.display = selected === 'credit_card' ? 'flex' : 'none';
+      paypalFields.style.display = selected === 'paypal' ? 'flex' : 'none';
+      bankFields.style.display = selected === 'bank_transfer' ? 'flex' : 'none';
+    }
+
+    methodRadios.forEach(radio => {
+      radio.addEventListener('change', updateFields);
+    });
+
+    updateFields(); // Set initial state
+  }
+});
+
+// Services Page Specific JavaScript
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Animate services stats when they come into view
+  const serviceStatNumbers = document.querySelectorAll('.stat-card .stat-number, .achievement-number');
+  
+  function animateServicesStats() {
+    serviceStatNumbers.forEach(el => {
+      if (el.hasAttribute('data-animated')) return;
+      
+      const rect = el.getBoundingClientRect();
+      if (rect.top >= 0 && rect.top <= window.innerHeight) {
+        el.setAttribute('data-animated', 'true');
+        let text = el.textContent.trim();
+        let target = 0;
+        
+        // Handle different number formats
+        if (text.includes('%')) {
+          target = parseInt(text.replace('%', ''));
+          animateNumberTo(el, target, '%');
+        } else if (text.includes('+')) {
+          target = parseInt(text.replace('+', ''));
+          animateNumberTo(el, target, '+');
+        } else if (text.includes('/')) {
+          // For 24/7 format, don't animate
+          return;
+        } else {
+          target = parseInt(text);
+          animateNumberTo(el, target, '');
+        }
+      }
+    });
   }
 
-  methodRadios.forEach(radio => {
-    radio.addEventListener('change', updateFields);
+  function animateNumberTo(element, target, suffix) {
+    let start = 0;
+    let duration = 2000;
+    let startTime = null;
+
+    function step(currentTime) {
+      if (!startTime) startTime = currentTime;
+      let progress = Math.min((currentTime - startTime) / duration, 1);
+      let value = Math.floor(progress * target);
+      
+      element.textContent = value + suffix;
+      
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        element.textContent = target + suffix;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Initial check and scroll listener
+  if (serviceStatNumbers.length > 0) {
+    animateServicesStats();
+    window.addEventListener('scroll', animateServicesStats);
+  }
+
+  // Service card hover effects
+  const serviceCards = document.querySelectorAll('.service-card, .package-card');
+  serviceCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      if (!this.classList.contains('featured') && !this.classList.contains('featured-package')) {
+        this.style.transform = 'translateY(0) scale(1)';
+      }
+    });
   });
 
-  updateFields(); // Set initial state
+  // Smooth scrolling for services CTA buttons
+  const ctaButtons = document.querySelectorAll('.services-cta-section .btn');
+  ctaButtons.forEach(button => {
+    if (button.textContent.includes('Schedule') || button.textContent.includes('Consultation')) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Show consultation modal if it exists
+        const consultationModal = document.getElementById('consultationModal');
+        if (consultationModal) {
+          const modal = new bootstrap.Modal(consultationModal);
+          modal.show();
+          
+          // Pre-fill service field if coming from a specific service
+          const serviceField = document.getElementById('consultService');
+          if (serviceField && !serviceField.value) {
+            serviceField.value = 'General Consultation';
+          }
+        }
+      });
+    }
+  });
+
+  // Add loading animation for service buttons
+  const serviceButtons = document.querySelectorAll('.service-btn, .package-btn');
+  serviceButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      if (!this.classList.contains('loading')) {
+        this.classList.add('loading');
+        const originalText = this.textContent;
+        this.textContent = 'Loading...';
+        
+        setTimeout(() => {
+          this.classList.remove('loading');
+          this.textContent = originalText;
+        }, 1500);
+      }
+    });
+  });
+
+  // Feature items animation on scroll
+  const featureItems = document.querySelectorAll('.feature-item');
+  
+  function animateFeatures() {
+    featureItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top >= 0 && rect.top <= window.innerHeight - 100) {
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateX(0)';
+        }, index * 200);
+      }
+    });
+  }
+
+  // Set initial state for feature items
+  featureItems.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-30px)';
+    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+
+  if (featureItems.length > 0) {
+    animateFeatures();
+    window.addEventListener('scroll', animateFeatures);
+  }
 });
