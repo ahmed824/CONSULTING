@@ -2403,9 +2403,10 @@ div#consultationModal {
   padding: 0.5rem 1.2rem;
 }
 .breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
+  content: "\f105";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   color: var(--gold);
-  font-weight: 700;
   padding: 0 0.5rem;
   font-size: 1.1em;
 }
