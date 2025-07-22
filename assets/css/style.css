@@ -1635,6 +1635,19 @@ p {
   display: inline-block;
   margin: 0 18px;
 }
+.navbar-brand {
+  color: var(--dark-blue);
+  font-size: 18px;
+  font-weight: 600;
+}
+.contact-info-nav {
+  width: 8px;
+  height: 8px;
+  background: var(--gold, #b68f0e);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 4px;
+}
 
 /* Responsive improvements for contact-info-bar */
 @media (max-width: 1024px) {

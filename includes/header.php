@@ -54,7 +54,7 @@
   <div id="sideNav" class="side-nav">
     <div class="side-nav-header">
       <a class="navbar-brand px-3" href="#">
-        <img src="assets/images/Logo.svg" alt="Consulting Logo">
+        CONSULTING <span class="contact-info-nav"></span>
       </a>
       <button class="close-btn" id="sideNavClose" aria-label="Close navigation">&times;</button>
     </div>
@@ -73,7 +73,8 @@
   </div>
   <div id="sideNavOverlay" class="side-nav-overlay"></div>
 
-  <div id="consultationModal" class="modal fade" tabindex="-1" aria-labelledby="consultationModalLabel" aria-hidden="true">
+  <div id="consultationModal" class="modal fade" tabindex="-1" aria-labelledby="consultationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
