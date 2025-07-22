@@ -40,10 +40,10 @@ function animateCounter(element, target) {
   requestAnimationFrame(step);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const langButtons = document.querySelectorAll('.lang-switch .btn-lang');
   langButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       langButtons.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       // Optionally, you can add logic here to change the language
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Swiper initialization for Clients Section
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
   if (window.Swiper) {
     new Swiper('.clients-swiper-container', {
       loop: true,
@@ -84,55 +84,55 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 });
 
- // Language switch logic
- const btnEn = document.getElementById('btn-en');
- const btnAr = document.getElementById('btn-ar');
- const head = document.head;
- let styleAr = document.getElementById('style-ar');
- let styleEn = document.getElementById('style-en');
+// Language switch logic
+const btnEn = document.getElementById('btn-en');
+const btnAr = document.getElementById('btn-ar');
+const head = document.head;
+let styleAr = document.getElementById('style-ar');
+let styleEn = document.getElementById('style-en');
 
- // Ensure style links have IDs for toggling
- const styleLinks = document.querySelectorAll('link[rel="stylesheet"]');
- styleLinks.forEach(link => {
-   if (link.getAttribute('href').includes('style.css')) {
-     link.id = 'style-en';
-   }
-   if (link.getAttribute('href').includes('style-ar.css')) {
-     link.id = 'style-ar';
-   }
- });
+// Ensure style links have IDs for toggling
+const styleLinks = document.querySelectorAll('link[rel="stylesheet"]');
+styleLinks.forEach(link => {
+  if (link.getAttribute('href').includes('style.css')) {
+    link.id = 'style-en';
+  }
+  if (link.getAttribute('href').includes('style-ar.css')) {
+    link.id = 'style-ar';
+  }
+});
 
- btnEn.addEventListener('click', function() {
-   btnEn.classList.add('active');
-   btnAr.classList.remove('active');
-   let styleAr = document.getElementById('style-ar');
-   if (styleAr) styleAr.remove();
-   let styleEn = document.getElementById('style-en');
-   if (!styleEn) {
-     const link = document.createElement('link');
-     link.rel = 'stylesheet';
-     link.href = 'assets/css/style.css';
-     link.id = 'style-en';
-     head.appendChild(link);
-   }
-   document.body.dir = 'ltr';
- });
+btnEn.addEventListener('click', function () {
+  btnEn.classList.add('active');
+  btnAr.classList.remove('active');
+  let styleAr = document.getElementById('style-ar');
+  if (styleAr) styleAr.remove();
+  let styleEn = document.getElementById('style-en');
+  if (!styleEn) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'assets/css/style.css';
+    link.id = 'style-en';
+    head.appendChild(link);
+  }
+  document.body.dir = 'ltr';
+});
 
- btnAr.addEventListener('click', function() {
-   btnAr.classList.add('active');
-   btnEn.classList.remove('active');
-   let styleEn = document.getElementById('style-en');
-   if (styleEn) styleEn.remove();
-   let styleAr = document.getElementById('style-ar');
-   if (!styleAr) {
-     const link = document.createElement('link');
-     link.rel = 'stylesheet';
-     link.href = 'assets/css/style-ar.css';
-     link.id = 'style-ar';
-     head.appendChild(link);
-   }
-   document.body.dir = 'rtl';
- });
+btnAr.addEventListener('click', function () {
+  btnAr.classList.add('active');
+  btnEn.classList.remove('active');
+  let styleEn = document.getElementById('style-en');
+  if (styleEn) styleEn.remove();
+  let styleAr = document.getElementById('style-ar');
+  if (!styleAr) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'assets/css/style-ar.css';
+    link.id = 'style-ar';
+    head.appendChild(link);
+  }
+  document.body.dir = 'rtl';
+});
 
 // Side Nav Toggle Logic
 function setupSideNav() {
@@ -162,7 +162,7 @@ function setupSideNav() {
     sideNavOverlay.addEventListener('click', closeSideNav);
   }
   // Optional: close on ESC key
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeSideNav();
   });
 }
@@ -170,12 +170,12 @@ function setupSideNav() {
 document.addEventListener('DOMContentLoaded', setupSideNav);
 
 // Modal logic for btn-gold
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
   var btnGolds = document.querySelectorAll('button.btn-gold');
   var consultationModal = document.getElementById('consultationModal');
   if (btnGolds.length && consultationModal) {
-    btnGolds.forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
+    btnGolds.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
         e.preventDefault();
         var modal = new bootstrap.Modal(consultationModal);
         modal.show();
@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', function() {
   // Form submission logic
   var consultationForm = document.getElementById('consultationForm');
   if (consultationForm) {
-    consultationForm.addEventListener('submit', function(e) {
+    consultationForm.addEventListener('submit', function (e) {
       e.preventDefault();
       // Basic validation (HTML5 required fields already in place)
       // You can add AJAX here if needed
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handle active nav link for both top and side navs
   var path = window.location.pathname.split("/").pop().toLowerCase();
   if (!path || path === '' || path === 'index.php') path = 'home.php';
-  document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link) {
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
     var href = link.getAttribute('href');
     if (!href) return;
     // Normalize for case and possible leading './'
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Payment method switching logic for payment.php
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const methodRadios = document.querySelectorAll('input[name="payment_method"]');
   const creditCardFields = document.getElementById('creditCardFields');
   const paypalFields = document.getElementById('paypalFields');

@@ -10,7 +10,7 @@
       </p>
       <div class="contact-location-btns">
         <button class="btn btn-gold">Request Consultation</button>
-        <a href="#" class="btn btn-outline-contact">Contact Us</a>
+        <a href="about.php" class="btn btn-outline-contact">Contact Us</a>
       </div>
     </div>
     <div class="contact-location-right">
