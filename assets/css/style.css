@@ -303,7 +303,7 @@ p {
 .hero-bg-layer {
   position: absolute;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 .hero-bg-layer.layer1 {
   background: linear-gradient(
@@ -1508,13 +1508,14 @@ p {
   color: #fff;
   border-radius: 50%;
   background: transparent;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .footer-social:hover {
   color: #b68f0e;
   border-color: #b68f0e;
+  transform: translateY(-6px);
 }
 
 .footer-bottom {
@@ -2258,7 +2259,7 @@ div#consultationModal {
   padding: 32px;
   background: var(--white);
   border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
 }
 
 .payment-section h2 {
@@ -2287,7 +2288,7 @@ div#consultationModal {
 }
 
 .payment-option:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .payment-option input {
@@ -2377,6 +2378,8 @@ div#consultationModal {
   background: transparent;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  display: flex;
+  justify-content: center;
 }
 .breadcrumb {
   background: transparent;
