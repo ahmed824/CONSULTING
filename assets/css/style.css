@@ -912,6 +912,11 @@ p {
   .category-description {
     max-width: unset;
   }
+  .category-description-second {
+    margin-top: 0 !important;
+    width: 100%;
+    max-width: unset;
+  }
 }
 
 @media (max-width: 450px) {
@@ -2603,4 +2608,7 @@ div#consultationModal {
   max-width: 800px;
   margin: 0 auto 2rem auto;
   text-align: center;
+}
+.categories-grid .category-card:nth-child(1) {
+  justify-self: center;
 }
