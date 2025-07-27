@@ -1,8 +1,8 @@
 <div class="custom-package-section">
     <div class="container">
         <div class="linear-bg"></div>
-        <div class="custom-package-card">
-            <div class="custom-package-content">
+        <div class="custom-package-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="custom-package-content" data-aos="fade-right" data-aos-delay="500">
                 <span class="custom-package-label">Custom Package</span>
                 <h2 class="custom-package-title">Build Your Package<br>Based on Your Needs</h2>
                 <div class="custom-package-price">
@@ -25,7 +25,7 @@
                     <option value="12">12 Months</option>
                 </select>
             </div>
-            <div class="custom-package-image">
+            <div class="custom-package-image" data-aos="fade-left" data-aos-delay="500">
                 <div class="icon-bg">
                     <img src="assets/images/check.gif" alt="gif check" class="check-gif">
                 </div>

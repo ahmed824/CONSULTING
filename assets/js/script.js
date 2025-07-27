@@ -1,5 +1,4 @@
-// Counter animation for .stat-number elements
-function animateCounter(element, target) {
+function animateCounter(element, target, isKFormat) {
   let start = 0;
   let duration = 2000; // 2 seconds
   let startTime = null;
@@ -7,26 +6,25 @@ function animateCounter(element, target) {
   function step(currentTime) {
     if (!startTime) startTime = currentTime;
     let progress = Math.min((currentTime - startTime) / duration, 1);
-    let value = Math.floor(progress * target);
-    if (target < 1000) {
-      element.textContent = '+' + value;
-    } else {
-      // For thousands, show as 1k, 10.2k, etc.
-      let displayValue = (progress * target) / 1000;
+    let value = progress * target;
+
+    if (isKFormat) {
+      let displayValue = value / 1000;
       if (target % 1000 === 0) {
         displayValue = Math.floor(displayValue);
       } else {
         displayValue = displayValue.toFixed(1);
       }
       element.textContent = '+' + displayValue + 'k';
+    } else {
+      element.textContent = '+' + Math.floor(value);
     }
+
     if (progress < 1) {
       requestAnimationFrame(step);
     } else {
       // Set final value
-      if (target < 1000) {
-        element.textContent = '+' + target;
-      } else {
+      if (isKFormat) {
         let displayValue = target / 1000;
         if (target % 1000 === 0) {
           displayValue = Math.floor(displayValue);
@@ -34,6 +32,8 @@ function animateCounter(element, target) {
           displayValue = displayValue.toFixed(1);
         }
         element.textContent = '+' + displayValue + 'k';
+      } else {
+        element.textContent = '+' + target;
       }
     }
   }
@@ -41,28 +41,47 @@ function animateCounter(element, target) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  const langButtons = document.querySelectorAll('.lang-switch .btn-lang');
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', function () {
-      langButtons.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      // Optionally, you can add logic here to change the language
-    });
-  });
-
+  const statsSection = document.querySelector('.stats-section');
   const statNumbers = document.querySelectorAll('.stat-number');
-  statNumbers.forEach(el => {
-    let text = el.textContent.trim();
-    let target = 0;
-    if (text.endsWith('k')) {
-      // Remove + and k, parse float, multiply by 1000
-      target = parseFloat(text.replace('+', '').replace('k', '')) * 1000;
-    } else {
-      target = parseInt(text.replace('+', ''));
+
+  // Check if stats-section exists
+  if (!statsSection) return; // silently skip if not found
+
+  // Create Intersection Observer
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Trigger animation for each stat-number
+          statNumbers.forEach(el => {
+            if (el.dataset.animated === 'true') return;
+
+            let text = el.textContent.trim();
+            let target = 0;
+            let isKFormat = text.endsWith('k');
+            if (isKFormat) {
+              target = parseFloat(text.replace('+', '').replace('k', '')) * 1000;
+            } else {
+              target = parseInt(text.replace('+', ''));
+            }
+            animateCounter(el, target, isKFormat);
+            el.dataset.animated = 'true';
+          });
+
+          observer.unobserve(statsSection);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
     }
-    animateCounter(el, target);
-  });
+  );
+
+  observer.observe(statsSection);
 });
+
 
 // Swiper initialization for Clients Section
 window.addEventListener('DOMContentLoaded', function () {
@@ -169,32 +188,61 @@ function setupSideNav() {
 
 document.addEventListener('DOMContentLoaded', setupSideNav);
 
-// Modal logic for btn-gold
 window.addEventListener('DOMContentLoaded', function () {
-  var btnGolds = document.querySelectorAll('button.btn-gold');
-  var consultationModal = document.getElementById('consultationModal');
+  // Modal logic for btn-gold
+  const btnGolds = document.querySelectorAll('button.btn-gold');
+  const consultationModal = document.getElementById('consultationModal');
+
   if (btnGolds.length && consultationModal) {
     btnGolds.forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        var modal = new bootstrap.Modal(consultationModal);
+        const modal = new bootstrap.Modal(consultationModal);
         modal.show();
       });
     });
+  } else {
+    console.warn('Modal or gold buttons not found in the DOM.');
   }
 
   // Form submission logic
-  var consultationForm = document.getElementById('consultationForm');
+  const consultationForm = document.getElementById('consultationForm');
   if (consultationForm) {
     consultationForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      // Basic validation (HTML5 required fields already in place)
-      // You can add AJAX here if needed
-      alert('Thank you! Your consultation request has been submitted.');
+
+      // Check HTML5 validation
+      if (!consultationForm.checkValidity()) {
+        consultationForm.reportValidity();
+        return;
+      }
+
+      // Collect form data
+      const formData = new FormData(consultationForm);
+      const data = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        phone: formData.get('phone') || '',
+        service: formData.get('service') || '',
+        message: formData.get('message') || ''
+      };
+
+      // Log form data to console
+      console.log('Consultation Request Submitted:', data);
+
+      // Reset form
       consultationForm.reset();
-      var modal = bootstrap.Modal.getInstance(consultationModal);
-      if (modal) modal.hide();
+
+      // Close modal
+      const modal = bootstrap.Modal.getInstance(consultationModal);
+      if (modal) {
+        modal.hide();
+      } else {
+        console.warn('Modal instance not found for closing.');
+      }
     });
+  } else {
+    console.warn('Consultation form not found in the DOM.');
   }
 });
 
@@ -232,23 +280,99 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Payment method switching logic for payment.php
-
 document.addEventListener('DOMContentLoaded', function () {
   const methodRadios = document.querySelectorAll('input[name="payment_method"]');
-  const creditCardFields = document.getElementById('creditCardFields');
-  const paypalFields = document.getElementById('paypalFields');
-  const bankFields = document.getElementById('bankFields');
+  const creditCardFields = document.getElementById('credit-card-fields');
+  const paypalFields = document.getElementById('paypal-fields');
+  const bankFields = document.getElementById('bank-transfer-fields');
+
+  // Check if elements exist to prevent null errors
+  if (!creditCardFields || !paypalFields || !bankFields) return;
+
 
   function updateFields() {
-    const selected = document.querySelector('input[name="payment_method"]:checked').value;
-    creditCardFields.style.display = selected === 'credit_card' ? 'flex' : 'none';
-    paypalFields.style.display = selected === 'paypal' ? 'flex' : 'none';
-    bankFields.style.display = selected === 'bank_transfer' ? 'flex' : 'none';
+    const selected = document.querySelector('input[name="payment_method"]:checked')?.value;
+    if (!selected) {
+      console.warn('No payment method selected.');
+      return;
+    }
+
+    // Set display based on selected payment method
+    creditCardFields.style.display = selected === 'credit_card' ? 'block' : 'none';
+    paypalFields.style.display = selected === 'paypal' ? 'block' : 'none';
+    bankFields.style.display = selected === 'bank_transfer' ? 'block' : 'none';
+
+    // Update required fields based on payment method
+    updateRequiredFields(selected);
+  }
+
+  function updateRequiredFields(method) {
+    const fields = {
+      'credit_card': ['card_number', 'expiry_date', 'cvv', 'card_holder'],
+      'paypal': ['paypal_email'],
+      'bank_transfer': ['account_number', 'routing_number']
+    };
+
+    // Reset required attributes for all inputs
+    [creditCardFields, paypalFields, bankFields].forEach(field => {
+      const inputs = field.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.required = method === field.id.replace('-fields', '') && fields[method].includes(input.name);
+      });
+    });
   }
 
   methodRadios.forEach(radio => {
     radio.addEventListener('change', updateFields);
   });
 
-  updateFields(); // Set initial state
+  // Set initial state
+  updateFields();
+
+  // Input formatting for card number
+  const cardNumberInput = document.getElementById('card-number');
+  if (cardNumberInput) {
+    cardNumberInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      value = value.match(/.{1,4}/g)?.join(' ') || value;
+      e.target.value = value.slice(0, 19); // Limit to 16 digits + 3 spaces
+    });
+  }
+
+  // Input formatting for expiry date
+  const expiryDateInput = document.getElementById('expiry-date');
+  if (expiryDateInput) {
+    expiryDateInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+      }
+      e.target.value = value.slice(0, 5); // Limit to MM/YY
+    });
+  }
+
+  // Basic form validation
+  const paymentForm = document.getElementById('payment-form');
+  if (paymentForm) {
+    paymentForm.addEventListener('submit', (e) => {
+      const amount = document.getElementById('amount').value;
+      if (amount <= 0) {
+        e.preventDefault();
+        alert('Please enter a valid amount');
+      }
+    });
+
+    // Label animation for form inputs
+    const inputs = paymentForm.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+      const label = paymentForm.querySelector(`label[for="${input.id}"]`);
+      if (!label) return;
+      input.addEventListener('focus', () => {
+        label.classList.add('active');
+      });
+      input.addEventListener('blur', () => {
+        label.classList.remove('active');
+      });
+    });
+  }
 });

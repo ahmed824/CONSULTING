@@ -9,12 +9,16 @@
   --white: #fff;
   --nav-link: #bac0c7;
   --nav-link-active: #e0b83b;
+  --shadow: 0 4px 15px rgb(59 94 130 / 13%);
 }
-
+html {
+  scroll-behavior: smooth !important;
+  overflow-x: hidden;
+}
 body {
   font-family: "DM Serif Display" !important;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
 }
 p {
   font-family: "Cairo", sans-serif;
@@ -546,7 +550,6 @@ p {
 /* Responsive */
 @media (max-width: 900px) {
   .stats-container {
-    flex-direction: column;
     gap: 20px;
     padding: 24px 8px;
   }
@@ -579,7 +582,7 @@ p {
   z-index: -1;
 }
 .our-categories {
-  overflow: hidden;
+  overflow-x: clip;
 }
 .category-card {
   width: 525px;
@@ -739,11 +742,30 @@ p {
   font-size: 18px;
   color: #425770;
 }
+
+.category-description-second {
+  max-width: 600px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #425770;
+  margin-top: 320px !important;
+}
+.category-description-second .highlight-blue {
+  font-size: 72px;
+  line-height: 0;
+}
+.about-page .stats-section {
+  margin-top: 100px;
+  display: flex;
+  gap: 50px;
+  flex-direction: column-reverse;
+}
 .categories-grid .third {
   display: flex;
   flex-direction: column;
   gap: 80px;
   margin-top: -100px;
+  z-index: 1;
 }
 
 .category-description .highlight-blue {
@@ -860,6 +882,7 @@ p {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
+    align-items: center;
   }
   .category-card {
     width: 100%;
@@ -882,12 +905,20 @@ p {
   .cta-bg {
     display: none;
   }
+  .categories-grid .third {
+    align-items: center;
+  }
+  .category-description {
+    max-width: unset;
+ 
+  }
 }
 
 @media (max-width: 450px) {
   .categories-grid .third {
-    margin-top: 200px;
+    margin-top: 40px;
     gap: 20px;
+    align-items: center;
   }
 }
 
@@ -913,13 +944,13 @@ p {
   display: flex;
   justify-content: center;
   gap: 32px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .business-card {
   background: #fff;
   border-radius: 12px;
   padding: 0 24px 24px 24px;
-  width: 360px;
+  /* width: 360px; */
   border: 1px solid #a8b0b980;
   backdrop-filter: blur(4px);
   display: flex;
@@ -928,11 +959,11 @@ p {
   transition: box-shadow 0.2s;
   position: relative;
   overflow: hidden;
-  transition: border 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease !important;
 }
 .business-card:hover {
   backdrop-filter: blur(4px);
-  transform: scale(1.02);
+  transform: scale(1.02) !important;
 }
 
 /* Themed border on hover */
@@ -1097,6 +1128,7 @@ p {
   padding: 100px 0;
   position: relative;
   background: #fff;
+  overflow-x: clip;
 }
 
 .custom-package-card {
@@ -1583,7 +1615,7 @@ p {
     font-size: 0.93rem;
   }
   .footer-partner .footer-logo-img {
-    max-width: 150px;
+    max-width: 100px;
   }
   .footer-social {
     font-size: 18px;
@@ -1656,6 +1688,9 @@ p {
 
 /* Responsive improvements for contact-info-bar */
 @media (max-width: 1024px) {
+  .category-card {
+    width: 100%;
+  }
   .contact-info-bar {
     gap: 0;
   }
@@ -1673,7 +1708,7 @@ p {
   .contact-info-bar {
     flex-direction: column;
     gap: 12px;
-    padding: 12px 0;
+    padding: 12px;
   }
   .contact-info-item {
     width: 100%;
@@ -1687,6 +1722,7 @@ p {
     font-size: 1.1rem;
     margin-right: 4px;
   }
+
   .contact-info-text {
     font-size: 13px;
     white-space: normal;
@@ -1694,11 +1730,14 @@ p {
   .contact-info-separator {
     display: none;
   }
+  .category-card {
+    width: 100%;
+  }
 }
 @media (max-width: 600px) {
   .contact-info-bar {
     gap: 6px;
-    padding: 8px 0;
+    padding: 8px;
   }
   .contact-info-item {
     padding: 6px 0 6px 0;
@@ -1710,11 +1749,21 @@ p {
     font-size: 0.95rem;
     margin-right: 2px;
   }
+  .contact-info-icon svg {
+    width: 18px;
+    height: 18px;
+  }
   .contact-info-text {
     font-size: 11.5px;
   }
   .contact-info-separator {
     display: none;
+  }
+  .footer-content img.footer-logo-img {
+    margin-bottom: 24px;
+  }
+  .footer-desc {
+    font-size: 15px;
   }
 }
 
@@ -1769,9 +1818,28 @@ p {
   color: #bfa046;
   font-weight: 600;
 }
-.side-nav .lang-switch {
-  display: flex;
-  gap: 0.5rem;
+.side-nav button {
+  color: var(--dark-blue) !important;
+  background-color: transparent;
+  border: 1px solid var(--dark-blue);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* تأثير عند التحويم */
+.side-nav button:hover {
+  background-color: var(--dark-blue);
+  color: #fff !important;
+}
+
+/* اللغة النشطة */
+.side-nav button.active {
+  background-color: var(--dark-blue);
+  color: #fff !important;
+  border-color: var(--dark-blue);
 }
 .side-nav .btn-gold {
   width: 100%;
@@ -1928,7 +1996,7 @@ div#consultationModal {
     min-height: 220px;
   }
   .whatsapp-icon {
-    transform: skewX(3deg);
+    transform: skewX(0deg);
   }
   .whatsapp-container {
     padding: 18px;
@@ -1943,11 +2011,17 @@ div#consultationModal {
   .whatsapp-container:after {
     content: none;
   }
+  .hero-section {
+    padding: 120px 0 0 0;
+    min-height: 80vh;
+    overflow: hidden;
+  }
 }
 @media (max-width: 600px) {
   .hero-section {
-    padding: 32px 0 0 0;
-    min-height: 60vh;
+    padding: 130px 0 0 0;
+    min-height: 80vh;
+    overflow: hidden;
   }
   .hero-content {
     gap: 18px;
@@ -1962,7 +2036,7 @@ div#consultationModal {
     margin-bottom: 0.7rem;
   }
   .hero-desc {
-    font-size: 0.95rem;
+    font-size: 14px;
     margin-bottom: 1rem;
   }
   .hero-btns .btn-gold,
@@ -2009,7 +2083,6 @@ div#consultationModal {
     font-size: 2rem;
   }
   .stats-container {
-    flex-direction: column;
     gap: 20px;
     padding: 18px 6px;
   }
@@ -2036,6 +2109,7 @@ div#consultationModal {
   .stats-container {
     gap: 12px;
     padding: 10px 2px;
+    flex-direction: column;
   }
   .stat-item {
     padding: 6px 0;
@@ -2112,9 +2186,9 @@ div#consultationModal {
     padding: 0 4px;
   }
   .business-card {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 8px 16px 8px;
+    /* width: 100%; */
+    /* max-width: 100%; */
+    padding: 0 12px 16px 12px;
     margin: 0 auto;
   }
   .card-title {
@@ -2270,7 +2344,8 @@ div#consultationModal {
 
 .payment-section {
   max-width: 600px;
-  margin: 40px auto;
+  margin: 0 auto;
+  margin-bottom: 34px;
   padding: 32px;
   background: var(--white);
   border-radius: 12px;
@@ -2357,7 +2432,7 @@ div#consultationModal {
   background: var(--gold);
   color: var(--dark-blue);
   border: none;
-  border-radius: 6px;
+  border-radius: 50px;
   font-size: 1.1em;
   font-weight: 500;
   cursor: pointer;
@@ -2378,12 +2453,14 @@ div#consultationModal {
     flex-direction: column;
     gap: 12px;
   }
+  .category-card {
+    width: 100%;
+  }
 }
 
 /* === Breadcrumb Styles === */
 .breadcrumb-nav {
   padding: 16px 0;
-  margin-bottom: 32px;
   background-image: url("../images/img2.png");
   background-size: cover;
   background-position: center;
@@ -2420,7 +2497,6 @@ div#consultationModal {
   position: relative;
   z-index: 1;
   justify-content: center;
-  
 }
 
 .breadcrumb-item {
@@ -2440,7 +2516,7 @@ div#consultationModal {
   color: var(--nav-link);
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: 22px;
+  font-size: clamp(1rem, 2vw, 22px);
   font-weight: 600;
 }
 
@@ -2450,10 +2526,15 @@ div#consultationModal {
 
 .breadcrumb-active {
   color: var(--gold);
-  font-size: 22px;
+  /* font-size: 22px; */
   font-weight: 600;
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
-
+.breadcrumb-nav h1 {
+  font-size: clamp(14px, 2.5vw, 24px) !important;
+  font-weight: 600;
+  margin: 0;
+}
 @media (max-width: 768px) {
   .breadcrumb-nav {
     padding: 12px 0;
@@ -2463,4 +2544,27 @@ div#consultationModal {
   .breadcrumb-item {
     font-size: 0.9rem;
   }
+}
+
+.about-page .categories-grid .category-card:nth-child(2) {
+  justify-self: center;
+}
+.about-page .categories-grid .category-card:nth-child(1) {
+  justify-self: center;
+}
+.about-page .head h2 {
+  color: var(--green);
+  font-size: 42px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.about-page .head p {
+  color: var(--dark-blue);
+  font-size: clamp(1rem, 2vw, 24px);
+  text-transform: capitalize;
+}
+
+.modal-backdrop {
+   display: none !important;
+   opacity:0 !important;
 }

@@ -1,5 +1,9 @@
 <?php include 'includes/header.php'; ?>
-
+<?php $breadcrumb_items = [
+  ['label' => 'Home', 'url' => 'Home.php'],
+  ['label' => 'Payment Information']
+];
+include 'includes/breadcrumb.php'; ?>
 <section class="payment-section">
   <h2>Payment Information</h2>
   <form id="payment-form" action="process_payment.php" method="POST">
@@ -90,81 +94,5 @@
     <button type="submit" class="pay-button">Pay Now</button>
   </form>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
-    const paymentDetails = {
-      'credit_card': document.getElementById('credit-card-fields'),
-      'paypal': document.getElementById('paypal-fields'),
-      'bank_transfer': document.getElementById('bank-transfer-fields')
-    };
-
-    paymentMethods.forEach(method => {
-      method.addEventListener('change', () => {
-        Object.values(paymentDetails).forEach(field => field.style.display = 'none');
-        paymentDetails[method.value].style.display = 'block';
-
-        // Update required fields based on payment method
-        updateRequiredFields(method.value);
-      });
-    });
-
-    function updateRequiredFields(method) {
-      const fields = {
-        'credit_card': ['card_number', 'expiry_date', 'cvv', 'card_holder'],
-        'paypal': ['paypal_email'],
-        'bank_transfer': ['account_number', 'routing_number']
-      };
-
-      Object.keys(paymentDetails).forEach(key => {
-        const inputs = paymentDetails[key].querySelectorAll('input');
-        inputs.forEach(input => {
-          input.required = method === key && fields[key].includes(input.name);
-        });
-      });
-    }
-
-    // Basic form validation
-    document.getElementById('payment-form').addEventListener('submit', (e) => {
-      const amount = document.getElementById('amount').value;
-      if (amount <= 0) {
-        e.preventDefault();
-        alert('Please enter a valid amount');
-      }
-    });
-
-    // Input formatting
-    document.getElementById('card-number').addEventListener('input', (e) => {
-      let value = e.target.value.replace(/\D/g, '');
-      value = value.match(/.{1,4}/g)?.join(' ') || value;
-      e.target.value = value;
-    });
-
-    document.getElementById('expiry-date').addEventListener('input', (e) => {
-      let value = e.target.value.replace(/\D/g, '');
-      if (value.length > 2) {
-        value = value.slice(0, 2) + '/' + value.slice(2);
-      }
-      e.target.value = value;
-    });
-
-    // Label animation for form inputs
-    const form = document.getElementById('payment-form');
-    if (form) {
-      const inputs = form.querySelectorAll('input, textareaوری, select');
-      inputs.forEach(input => {
-        const label = form.querySelector('label[for="' + input.id + '"]');
-        if (!label) return;
-        input.addEventListener('focus', () => {
-          label.classList.add('active');
-        });
-        input.addEventListener('blur', () => {
-          label.classList.remove('active');
-        });
-      });
-    }
-  });
-</script>
 
 <?php include 'includes/footer.php'; ?>

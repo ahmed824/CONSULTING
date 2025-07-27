@@ -31,14 +31,22 @@
         All Copy Rights Reserved For <span class="footer-bold">CONSULTING..</span> ~ 2025
       </div>
       <div class="footer-partner">
-        <span class="footer-partner-logo">
+        <a href="https://puiux.com/" rel="noopener noreferrer" target="_blank" class="footer-partner-logo">
           <img src="assets/images/PUIUX.svg" alt="Consulting Logo" class="footer-logo-img" />
-        </span>
+        </a>
       </div>
     </div>
   </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    offset: 100,
+    easing: 'ease-out-quad'
+  });
+</script>
 </body>
 
 </html>

@@ -18,7 +18,7 @@ if (!isset($breadcrumb_items) || !is_array($breadcrumb_items)) {
         </li>
       <?php else: ?>
         <li class="breadcrumb-item breadcrumb-active" aria-current="page">
-          <?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?>
+          <h1> <?php echo htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8'); ?></h1>
         </li>
       <?php endif; ?>
     <?php endforeach; ?>

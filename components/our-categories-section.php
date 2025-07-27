@@ -1,20 +1,22 @@
-<section class="our-categories ">
+<section class="our-categories">
     <div class="container-fluid position-relative">
         <div class="categories-bg-gradient">
             <div class="gradient1"></div>
             <div class="gradient2"></div>
         </div>
         <div class="categories-grid">
-            <div class="category-card" style="background-image: url('assets/images/img1.jpg');">
+            <div class="category-card" style="background-image: url('assets/images/img1.jpg');" data-aos="fade-up"
+                data-aos-duration="1000">
                 <div class="category-content">
                     <h3>Engineering Consulting Solutions</h3>
                     <span class="coming-soon">coming soon</span>
                 </div>
             </div>
-            <div class="category-card category-card-right" style="background-image: url('assets/images/img2.png');">
+            <div class="category-card category-card-right" style="background-image: url('assets/images/img2.png');"
+                data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 <div class="category-content">
                     <h3>Professional Accounting Services for Your Business</h3>
-                    <a href="#" class=" explore-btn d-flex align-items-center gap-2 position-relative overflow-hidden">
+                    <a href="#" class="explore-btn d-flex align-items-center gap-2 position-relative overflow-hidden">
                         Explore
                         <span class="explore-icon d-flex justify-content-center align-items-center">
                             <svg class="rotate-icon" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -27,14 +29,11 @@
                     </a>
                 </div>
             </div>
-            <div class="third">
+            <div class="third" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                 <p class="category-description">
                     <span class="highlight-blue">W</span>e provide comprehensive advisory services in legal, financial,
-                    and business domains, helping you
-                    make informed decisions backed by deep expertise and market insight. We provide comprehensive
-                    advisory services in legal, financial, and business domains, helping you make informed decisions
-                    backed by deep expertise and market insight.We provide comprehensive advisory services in legal,
-                    financial, and business domains,
+                    and business domains, helping you make informed decisions backed by deep expertise and market
+                    insight.
                 </p>
                 <div class="category-card" style="background-image: url('assets/images/img3.jpg');">
                     <div class="category-content">
@@ -49,16 +48,16 @@
         <div class="container">
             <div class="cta-bg"></div>
             <div class="cta-content">
-                <h2>welcome to our website</h2>
-                <h3 class="w-75">We are a trusted accounting and financial consulting firm, helping individuals and
-                    businesses achieve
-                    success.</h3>
-                <p>We provide comprehensive advisory services in legal, financial, and business domains, helping you
-                    make informed decisions backed by deep expertise and market insight.</p>
-                <button class="btn btn-gold">Request Consultation</button>
+                <h2 data-aos="fade-up" data-aos-duration="1000">Welcome to Our Website</h2>
+                <h3 data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" class="w-75">We are a trusted
+                    accounting and financial consulting firm, helping individuals and businesses achieve success.</h3>
+                <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">We provide comprehensive advisory
+                    services in legal, financial, and business domains, helping you make informed decisions backed by
+                    deep expertise and market insight.</p>
+                <button class="btn btn-gold" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">Request
+                    Consultation</button>
             </div>
         </div>
     </div>
 </section>
-
- 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

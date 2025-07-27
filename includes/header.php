@@ -12,12 +12,10 @@ $page_description = isset($page_description) ? $page_description : 'Professional
   <title><?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?></title>
   <meta name="description" content="<?php echo htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8'); ?>">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-papm6r+Y6U6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6QKq+6Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
@@ -30,7 +28,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
           <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Logo for large screens -->
-        <a class="navbar-brand " href="#">
+        <a class="navbar-brand" href="#">
           <img src="assets/images/Logo.svg" alt="Consulting Logo">
         </a>
         <!-- Nav links for large screens -->
@@ -88,33 +86,45 @@ $page_description = isset($page_description) ? $page_description : 'Professional
           <div class="modal-body">
             <div class="mb-3">
               <label for="consultName" class="form-label">Name</label>
-              <input type="text" class="form-control" id="consultName" name="name" required>
+              <input type="text" class="form-control" id="consultName" name="name" placeholder="Enter your full name"
+                required aria-describedby="consultNamePlaceholder">
+              <span id="consultNamePlaceholder" class="visually-hidden">Enter your full name</span>
             </div>
             <div class="mb-3">
               <label for="consultEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="consultEmail" name="email" required>
+              <input type="email" class="form-control" id="consultEmail" name="email"
+                placeholder="Enter your email address" required aria-describedby="consultEmailPlaceholder">
+              <span id="consultEmailPlaceholder" class="visually-hidden">Enter your email address</span>
             </div>
             <div class="mb-3">
               <label for="consultPhone" class="form-label">Phone</label>
-              <input type="tel" class="form-control" id="consultPhone" name="phone">
+              <input type="tel" class="form-control" id="consultPhone" name="phone"
+                placeholder="Enter your phone number" aria-describedby="consultPhonePlaceholder">
+              <span id="consultPhonePlaceholder" class="visually-hidden">Enter your phone number</span>
             </div>
             <div class="mb-3">
               <label for="consultService" class="form-label">Service Interested In</label>
-              <input type="text" class="form-control" id="consultService" name="service">
+              <input type="text" class="form-control" id="consultService" name="service"
+                placeholder="Specify the service you need" aria-describedby="consultServicePlaceholder">
+              <span id="consultServicePlaceholder" class="visually-hidden">Specify the service you need</span>
             </div>
             <div class="mb-3">
               <label for="consultMessage" class="form-label">Message</label>
-              <textarea class="form-control" id="consultMessage" name="message" rows="3"></textarea>
+              <textarea class="form-control" id="consultMessage" name="message" rows="3"
+                placeholder="Describe your consultation needs" aria-describedby="consultMessagePlaceholder"></textarea>
+              <span id="consultMessagePlaceholder" class="visually-hidden">Describe your consultation needs</span>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-gold">Send Request</button>
+            <button type="submit" class="btn btn-gold" id="consultationSubmit">Send Request</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+  <!-- Add this before your script.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="assets/js/script.js"></script>
 </body>
