@@ -911,7 +911,6 @@ p {
   }
   .category-description {
     max-width: unset;
- 
   }
 }
 
@@ -1115,14 +1114,37 @@ p {
 
 /* Responsive */
 @media (max-width: 1100px) {
+  .business-card {
+    width: 95%;
+    max-width: 400px;
+  }
+  .check {
+    margin-right: 4px;
+  }
+}
+@media (max-width: 1024px) {
+  .business-cards {
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 22px;
+  }
+  .business-card {
+    width: 95%;
+    max-width: 370px;
+    padding: 0 12px 18px 12px;
+  }
+  .card-list li {
+    font-size: 12px;
+  }
+  .card-list {
+    margin: 0 0 10px 0;
+  }
+}
+@media (max-width: 999px) {
   .business-cards {
     flex-direction: column;
     align-items: center;
     gap: 24px;
-  }
-  .business-card {
-    width: 95%;
-    max-width: 400px;
   }
 }
 .custom-package-section {
@@ -1961,6 +1983,15 @@ div#consultationModal {
 }
 
 /* === Responsive Hero Section Improvements === */
+@media (max-width: 1024px) {
+  .hero-section {
+    padding: 200px 0 0 0;
+  }
+  .card-desc {
+     font-size: 16px;
+    margin: 50px 0 14px 0;
+ }
+}
 @media (max-width: 900px) {
   .hero-content {
     flex-direction: column;
@@ -2148,6 +2179,12 @@ div#consultationModal {
     padding: 12px 0;
   }
 }
+@media (max-width: 768px) {
+  .card-list li {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+}
 @media (max-width: 600px) {
   .call-to-action {
     padding: 24px 0 24px 0;
@@ -2171,7 +2208,7 @@ div#consultationModal {
 
 @media (max-width: 600px) {
   .business-section {
-    padding: 24px 0 16px 0;
+    padding: 0 0 16px 0;
   }
   .business-header .business-title {
     font-size: 1.3rem;
@@ -2194,7 +2231,7 @@ div#consultationModal {
   }
   .card-title {
     font-size: 1.1rem;
-    margin-top: 18px;
+    margin-top: 40px;
   }
   .card-price {
     font-size: 1.5rem;
@@ -2205,7 +2242,7 @@ div#consultationModal {
     margin: 90px 0 12px 0;
   }
   .card-list li {
-    font-size: 0.95rem;
+    font-size: 14px;
     margin-bottom: 4px;
   }
   .card-btn {
@@ -2218,9 +2255,9 @@ div#consultationModal {
 @media (max-width: 900px) {
   .custom-package-card {
     flex-direction: column-reverse;
-    padding: 32px 12px 32px 12px;
+    padding: 32px 22px  ;
     align-items: stretch;
-    gap: 24px;
+    gap: 22px;
   }
   .custom-package-content {
     width: 100%;
@@ -2539,7 +2576,7 @@ div#consultationModal {
 @media (max-width: 768px) {
   .breadcrumb-nav {
     padding: 12px 0;
-    margin-bottom: 24px;
+    margin-bottom: 0;
   }
 
   .breadcrumb-item {

@@ -313,7 +313,7 @@ include 'includes/breadcrumb.php';
     display: block;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 766px) {
     .contact-social-cards {
       flex-direction: column;
       align-items: center;
