@@ -2610,5 +2610,5 @@ div#consultationModal {
   text-align: center;
 }
 .categories-grid .category-card:nth-child(1) {
-  justify-self: center;
+  justify-self: left;
 }

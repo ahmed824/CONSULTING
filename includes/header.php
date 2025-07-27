@@ -28,7 +28,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
           <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Logo for large screens -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="Home.php">
           <img src="assets/images/Logo.svg" alt="Consulting Logo">
         </a>
         <!-- Nav links for large screens -->
@@ -54,7 +54,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
   <!-- Side Nav (hidden on large screens) -->
   <div id="sideNav" class="side-nav">
     <div class="side-nav-header">
-      <a class="navbar-brand px-3" href="#">
+      <a class="navbar-brand px-3" href="Home.php">
         CONSULTING <span class="contact-info-nav"></span>
       </a>
       <button class="close-btn" id="sideNavClose" aria-label="Close navigation">&times;</button>
