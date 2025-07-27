@@ -376,3 +376,194 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// ===== CONTACT FORM FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
+
+  const formMessages = document.getElementById('form-messages');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnSpinner = submitBtn.querySelector('.btn-spinner');
+
+  // Form validation rules
+  const validationRules = {
+    name: {
+      required: true,
+      minLength: 2,
+      pattern: /^[a-zA-Z\s]+$/,
+      message: 'Please enter a valid name (letters only, minimum 2 characters)'
+    },
+    email: {
+      required: true,
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: 'Please enter a valid email address'
+    },
+    phone: {
+      required: false,
+      pattern: /^[\+]?[0-9\s\-\(\)]{10,}$/,
+      message: 'Please enter a valid phone number'
+    },
+    subject: {
+      required: true,
+      minLength: 5,
+      message: 'Subject must be at least 5 characters long'
+    },
+    message: {
+      required: true,
+      minLength: 10,
+      message: 'Message must be at least 10 characters long'
+    }
+  };
+
+  // Real-time validation
+  function validateField(field) {
+    const fieldName = field.name;
+    const fieldValue = field.value.trim();
+    const rules = validationRules[fieldName];
+    const errorElement = document.getElementById(`${fieldName}-error`);
+
+    if (!rules) return true;
+
+    // Clear previous error
+    field.classList.remove('error');
+    errorElement.classList.remove('show');
+
+    // Required field validation
+    if (rules.required && !fieldValue) {
+      showFieldError(field, errorElement, `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`);
+      return false;
+    }
+
+    // Skip other validations if field is empty and not required
+    if (!rules.required && !fieldValue) return true;
+
+    // Pattern validation
+    if (rules.pattern && !rules.pattern.test(fieldValue)) {
+      showFieldError(field, errorElement, rules.message);
+      return false;
+    }
+
+    // Length validation
+    if (rules.minLength && fieldValue.length < rules.minLength) {
+      showFieldError(field, errorElement, rules.message);
+      return false;
+    }
+
+    // Field is valid
+    field.classList.remove('error');
+    errorElement.classList.remove('show');
+    return true;
+  }
+
+  function showFieldError(field, errorElement, message) {
+    field.classList.add('error');
+    errorElement.textContent = message;
+    errorElement.classList.add('show');
+  }
+
+  // Add event listeners for real-time validation
+  const formFields = contactForm.querySelectorAll('.contact-form-control');
+  formFields.forEach(field => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener('input', () => {
+      // Clear error state on input
+      if (field.classList.contains('error')) {
+        validateField(field);
+      }
+    });
+  });
+
+  // Form submission
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Validate all fields
+    let isValid = true;
+    formFields.forEach(field => {
+      if (!validateField(field)) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      showFormMessage('Please correct the errors above', 'error');
+      return;
+    }
+
+    // Show loading state
+    setLoadingState(true);
+
+    try {
+      const formData = new FormData(contactForm);
+      const response = await fetch('process_contact.php', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showFormMessage(result.message || 'Thank you! Your message has been sent successfully.', 'success');
+        contactForm.reset();
+        // Clear any remaining error states
+        formFields.forEach(field => {
+          field.classList.remove('error');
+        });
+        document.querySelectorAll('.error-message').forEach(error => {
+          error.classList.remove('show');
+        });
+      } else {
+        showFormMessage(result.message || 'There was an error sending your message. Please try again.', 'error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      showFormMessage('There was an error sending your message. Please try again later.', 'error');
+    } finally {
+      setLoadingState(false);
+    }
+  });
+
+  function setLoadingState(loading) {
+    if (loading) {
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnSpinner.style.display = 'flex';
+    } else {
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline';
+      btnSpinner.style.display = 'none';
+    }
+  }
+
+  function showFormMessage(message, type) {
+    formMessages.textContent = message;
+    formMessages.className = `form-messages ${type}`;
+    formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Auto-hide success messages after 5 seconds
+    if (type === 'success') {
+      setTimeout(() => {
+        formMessages.classList.remove('success');
+        formMessages.style.display = 'none';
+      }, 5000);
+    }
+  }
+
+  // Smooth form animations
+  formFields.forEach(field => {
+    field.addEventListener('focus', function() {
+      this.parentElement.classList.add('focused');
+    });
+
+    field.addEventListener('blur', function() {
+      if (!this.value.trim()) {
+        this.parentElement.classList.remove('focused');
+      }
+    });
+  });
+});

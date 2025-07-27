@@ -1,4 +1,8 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+$page_title = 'Contact Us - Professional Consulting Services';
+$page_description = 'Get in touch with our expert consulting team. We serve clients across multiple regions in Saudi Arabia with comprehensive advisory services in legal, financial, and business domains.';
+include 'includes/header.php'; 
+?>
 <?php
 $breadcrumb_items = [
   ['label' => 'Home', 'url' => 'Home.php'],

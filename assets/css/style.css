@@ -2545,26 +2545,3 @@ div#consultationModal {
     font-size: 0.9rem;
   }
 }
-
-.about-page .categories-grid .category-card:nth-child(2) {
-  justify-self: center;
-}
-.about-page .categories-grid .category-card:nth-child(1) {
-  justify-self: center;
-}
-.about-page .head h2 {
-  color: var(--green);
-  font-size: 42px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-.about-page .head p {
-  color: var(--dark-blue);
-  font-size: clamp(1rem, 2vw, 24px);
-  text-transform: capitalize;
-}
-
-.modal-backdrop {
-   display: none !important;
-   opacity:0 !important;
-}
