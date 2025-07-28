@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ===== CONTACT FORM FUNCTIONALITY =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Form submission
-  contactForm.addEventListener('submit', async function(e) {
+  contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     // Validate all fields
@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
     formMessages.textContent = message;
     formMessages.className = `form-messages ${type}`;
     formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    
+
     // Auto-hide success messages after 5 seconds
     if (type === 'success') {
       setTimeout(() => {
@@ -553,14 +553,116 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Smooth form animations
   formFields.forEach(field => {
-    field.addEventListener('focus', function() {
+    field.addEventListener('focus', function () {
       this.parentElement.classList.add('focused');
     });
 
-    field.addEventListener('blur', function() {
+    field.addEventListener('blur', function () {
       if (!this.value.trim()) {
         this.parentElement.classList.remove('focused');
       }
     });
   });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Payment method switching
+  const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+  const creditCardSection = document.getElementById('credit-card-section');
+  const paypalSection = document.getElementById('paypal-section');
+  const bankTransferSection = document.getElementById('bank-transfer-section');
+  const cardDetailsRow = document.getElementById('card-details-row');
+
+  function switchPaymentMethod() {
+    // Fallback to 'credit_card' if no method is checked
+    const selectedMethodInput = document.querySelector('input[name="payment_method"]:checked');
+    const selectedMethod = selectedMethodInput ? selectedMethodInput.value : 'credit_card';
+
+    // Ensure sections exist before modifying their display
+    if (creditCardSection && paypalSection && bankTransferSection && cardDetailsRow) {
+      creditCardSection.style.display = selectedMethod === 'credit_card' ? 'block' : 'none';
+      paypalSection.style.display = selectedMethod === 'paypal' ? 'block' : 'none';
+      bankTransferSection.style.display = selectedMethod === 'bank_transfer' ? 'block' : 'none';
+      cardDetailsRow.style.display = selectedMethod === 'credit_card' ? 'grid' : 'none';
+    }
+  }
+
+  // Attach event listeners if payment methods exist
+  if (paymentMethods.length > 0) {
+    paymentMethods.forEach(method => {
+      method.addEventListener('change', switchPaymentMethod);
+    });
+    // Initialize with credit card selected
+    switchPaymentMethod();
+  }
+
+  // Toggle switch functionality
+  const toggleSwitch = document.getElementById('auto-renewal-toggle');
+  const autoRenewalStatus = document.getElementById('auto-renewal-status');
+
+  if (toggleSwitch && autoRenewalStatus) {
+    toggleSwitch.addEventListener('click', function () {
+      this.classList.toggle('active');
+      autoRenewalStatus.textContent = this.classList.contains('active') ? 'Auto-Renewal: On' : 'Auto-Renewal: Off';
+    });
+  }
+
+  // Card number formatting and brand detection
+  const cardNumberInput = document.getElementById('card-number');
+  const cardBrandSpan = document.getElementById('card-brand');
+
+  if (cardNumberInput && cardBrandSpan) {
+    cardNumberInput.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      e.target.value = formattedValue;
+
+      if (value.startsWith('4')) {
+        cardBrandSpan.textContent = 'VISA';
+      } else if (value.startsWith('5') || value.startsWith('2')) {
+        cardBrandSpan.textContent = 'MASTERCARD';
+      } else if (value.startsWith('3')) {
+        cardBrandSpan.textContent = 'AMEX';
+      } else {
+        cardBrandSpan.textContent = 'CARD';
+      }
+    });
+  }
+
+  // Expiry date formatting
+  const expiryInput = document.getElementById('expiry-date');
+  if (expiryInput) {
+    expiryInput.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2, 4) + '/' + value.substring(4, 6);
+      }
+      e.target.value = value;
+    });
+  }
+
+  // CVV input restriction
+  const cvvInput = document.getElementById('cvv');
+  if (cvvInput) {
+    cvvInput.addEventListener('input', function (e) {
+      e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+    });
+  }
+
+  // Apply discount functionality
+  const applyBtn = document.querySelector('.apply-btn');
+  if (applyBtn) {
+    applyBtn.addEventListener('click', function () {
+      alert('Discount applied successfully!');
+    });
+  }
+
+  // Form submission
+  const form = document.getElementById('payment-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Payment submitted successfully!');
+    });
+  }
 });
