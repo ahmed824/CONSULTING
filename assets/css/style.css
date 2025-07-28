@@ -1090,6 +1090,7 @@ p {
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
+
 .business-card .btn-green {
   background: var(--green);
   color: #fff;
@@ -1578,7 +1579,9 @@ p {
 }
 
 .footer-social:hover {
-  color: #b68f0e;
+  background: linear-gradient(215deg, #a67c00, #b68f0e, #e6b800, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   border-color: #b68f0e;
   transform: translateY(-6px);
 }
@@ -1671,7 +1674,7 @@ p {
 .contact-info-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   padding: 8px 22px 8px 12px;
 }
 .contact-info-icon {
@@ -1993,9 +1996,9 @@ div#consultationModal {
     padding: 200px 0 0 0;
   }
   .card-desc {
-     font-size: 16px;
+    font-size: 16px;
     margin: 50px 0 14px 0;
- }
+  }
 }
 @media (max-width: 900px) {
   .hero-content {
@@ -2260,7 +2263,7 @@ div#consultationModal {
 @media (max-width: 900px) {
   .custom-package-card {
     flex-direction: column-reverse;
-    padding: 32px 22px  ;
+    padding: 32px 22px;
     align-items: stretch;
     gap: 22px;
   }
@@ -2406,7 +2409,7 @@ div#consultationModal {
 .payment-methods {
   margin-bottom: 24px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
 }
 
@@ -2595,7 +2598,9 @@ div#consultationModal {
 .about-page .section-title {
   font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive heading */
   font-weight: 700;
-  color: var(--dark-blue); /* You can replace with specific color like #123456 */
+  color: var(
+    --dark-blue
+  ); /* You can replace with specific color like #123456 */
   text-align: center;
   margin-bottom: 1rem;
   text-transform: capitalize;
@@ -2611,4 +2616,82 @@ div#consultationModal {
 }
 .categories-grid .category-card:nth-child(1) {
   justify-self: left;
+}
+.payment-method-section {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.payment-method-section h3 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: start;
+  color: #333;
+}
+.customer-info h3 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.payment-option:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.1) 60%
+  );
+  background-size: 200% 100%;
+  animation: slideBlur 1s ease-in-out infinite;
+  border-color: #b68f0e;
+  transform: translateY(-3px);
+}
+
+.payment-option input[type="radio"] {
+  display: none;
+}
+
+.payment-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+}
+
+.payment-option input[type="radio"]:checked + .payment-label {
+  background: linear-gradient(135deg, #a67c00, #b68f0e, #e6b800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.payment-option input[type="radio"]:checked + .payment-label i {
+  color: #b68f0e !important;
+}
+
+.payment-option:has(input[type="radio"]:checked) {
+  border: 2px solid #b68f0e;
+}
+
+@keyframes slideBlur {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }

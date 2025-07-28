@@ -14,15 +14,21 @@ include 'includes/breadcrumb.php'; ?>
       <div class="payment-methods">
         <label class="payment-option">
           <input type="radio" name="payment_method" value="credit_card" checked>
-          <span>Credit/Debit Card</span>
+          <span class="payment-label">
+            <i class="fas fa-credit-card" style="color: #b68f0e;"></i> Credit/Debit Card
+          </span>
         </label>
         <label class="payment-option">
           <input type="radio" name="payment_method" value="paypal">
-          <span>PayPal</span>
+          <span class="payment-label">
+            <i class="fab fa-paypal" style="color: #003087;"></i> PayPal
+          </span>
         </label>
         <label class="payment-option">
           <input type="radio" name="payment_method" value="bank_transfer">
-          <span>Bank Transfer</span>
+          <span class="payment-label">
+            <i class="fas fa-university" style="color: #4a4a4a;"></i> Bank Transfer
+          </span>
         </label>
       </div>
     </div>
@@ -32,15 +38,21 @@ include 'includes/breadcrumb.php'; ?>
       <h3>Customer Information</h3>
       <div class="mb-3">
         <label for="consultName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="consultName" name="name" required>
+        <input type="text" class="form-control" id="consultName" name="name" placeholder="Enter your full name" required
+          aria-describedby="consultNamePlaceholder">
+        <span id="consultNamePlaceholder" class="visually-hidden">Enter your full name</span>
       </div>
       <div class="mb-3">
         <label for="consultEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="consultEmail" name="email" required>
+        <input type="email" class="form-control" id="consultEmail" name="email" placeholder="Enter your email address"
+          required aria-describedby="consultEmailPlaceholder">
+        <span id="consultEmailPlaceholder" class="visually-hidden">Enter your email address</span>
       </div>
       <div class="mb-3">
         <label for="consultPhone" class="form-label">Phone</label>
-        <input type="tel" class="form-control" id="consultPhone" name="phone">
+        <input type="tel" class="form-control" id="consultPhone" name="phone" placeholder="Enter your phone number"
+          aria-describedby="consultPhonePlaceholder">
+        <span id="consultPhonePlaceholder" class="visually-hidden">Enter your phone number</span>
       </div>
     </div>
 

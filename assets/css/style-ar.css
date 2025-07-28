@@ -474,6 +474,7 @@ p {
   align-items: center;
   justify-content: center;
   transform: skewX(-3deg);
+  right: unset;
 }
 
 .whatsapp-icon {

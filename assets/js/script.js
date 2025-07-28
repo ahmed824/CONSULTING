@@ -106,25 +106,16 @@ window.addEventListener('DOMContentLoaded', function () {
 // Language switch logic
 const btnEn = document.getElementById('btn-en');
 const btnAr = document.getElementById('btn-ar');
+const btnEnSide = document.getElementById('btn-en-side');
+const btnArSide = document.getElementById('btn-ar-side');
 const head = document.head;
-let styleAr = document.getElementById('style-ar');
-let styleEn = document.getElementById('style-en');
 
-// Ensure style links have IDs for toggling
-const styleLinks = document.querySelectorAll('link[rel="stylesheet"]');
-styleLinks.forEach(link => {
-  if (link.getAttribute('href').includes('style.css')) {
-    link.id = 'style-en';
-  }
-  if (link.getAttribute('href').includes('style-ar.css')) {
-    link.id = 'style-ar';
-  }
-});
-
-btnEn.addEventListener('click', function () {
+function switchToEnglish() {
   btnEn.classList.add('active');
   btnAr.classList.remove('active');
-  let styleAr = document.getElementById('style-ar');
+  btnEnSide.classList.add('active');
+  btnArSide.classList.remove('active');
+  const styleAr = document.getElementById('style-ar');
   if (styleAr) styleAr.remove();
   let styleEn = document.getElementById('style-en');
   if (!styleEn) {
@@ -135,12 +126,14 @@ btnEn.addEventListener('click', function () {
     head.appendChild(link);
   }
   document.body.dir = 'ltr';
-});
+}
 
-btnAr.addEventListener('click', function () {
+function switchToArabic() {
   btnAr.classList.add('active');
   btnEn.classList.remove('active');
-  let styleEn = document.getElementById('style-en');
+  btnArSide.classList.add('active');
+  btnEnSide.classList.remove('active');
+  const styleEn = document.getElementById('style-en');
   if (styleEn) styleEn.remove();
   let styleAr = document.getElementById('style-ar');
   if (!styleAr) {
@@ -151,8 +144,12 @@ btnAr.addEventListener('click', function () {
     head.appendChild(link);
   }
   document.body.dir = 'rtl';
-});
+}
 
+btnEn.addEventListener('click', switchToEnglish);
+btnAr.addEventListener('click', switchToArabic);
+btnEnSide.addEventListener('click', switchToEnglish);
+btnArSide.addEventListener('click', switchToArabic);
 // Side Nav Toggle Logic
 function setupSideNav() {
   const sideNav = document.getElementById('sideNav');
