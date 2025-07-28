@@ -15,15 +15,18 @@
                     </span>
                 </div>
                 <p class="custom-package-desc">
-                    we provide comprehensive advisory services in legal, financial, and business domains.
+                    We provide comprehensive advisory services in legal, financial, and business domains.
                 </p>
-                <select class="custom-package-select" required>
-                    <option value="" disabled selected hidden>Select Duration</option>
-                    <option value="1">1 Month</option>
-                    <option value="3">3 Months</option>
-                    <option value="6">6 Months</option>
-                    <option value="12">12 Months</option>
-                </select>
+                <div class="custom-package-actions">
+                    <select class="custom-package-select" required>
+                        <option value="" disabled selected hidden>Select Duration</option>
+                        <option value="1">1 Month</option>
+                        <option value="3">3 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="12">12 Months</option>
+                    </select>
+                    <button type="button" class="btn btn-gold ms-3" data-bs-toggle="modal" data-bs-target="#consultationModal">Request Package</button>
+                </div>
             </div>
             <div class="custom-package-image" data-aos="fade-left" data-aos-delay="500">
                 <div class="icon-bg">
@@ -33,3 +36,24 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const select = document.querySelector('.custom-package-select');
+    const priceAmount = document.querySelector('.price-amount');
+
+    const prices = {
+        '1': 30,
+        '3': 85,
+        '6': 160,
+        '12': 300
+    };
+
+    select.addEventListener('change', function () {
+        const selectedDuration = this.value;
+        priceAmount.textContent = prices[selectedDuration] || '30'; // Fallback to 30 if no valid selection
+    });
+});
+</script>
+
+ 
