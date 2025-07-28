@@ -26,8 +26,7 @@
                         <option value="6">6 Months</option>
                         <option value="12">12 Months</option>
                     </select>
-                    <button type="button" class="btn btn-gold ms-3" data-bs-toggle="modal"
-                        data-bs-target="#consultationModal">Request Package</button>
+                    <button type="button" class="btn btn-submit ms-3" >Request Package</button>
                 </div>
             </div>
             <div class="custom-package-image" data-aos="fade-left" data-aos-delay="500">

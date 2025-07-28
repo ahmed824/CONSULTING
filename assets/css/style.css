@@ -3069,7 +3069,7 @@ div#consultationModal {
   line-height: 1.4;
 }
 
-button#consultationSubmit {
+.btn-submit {
   background: var(--gold);
   color: var(--white);
   border-radius: 50px;

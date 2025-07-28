@@ -111,36 +111,12 @@ $page_description = isset($page_description) ? $page_description : 'Professional
 
           </div>
           <div class="mb-3">
-            <label for="consultCountry" class="form-label">Country</label>
-            <select class="custom-package-select w-100" id="consultCountry" name="country" required
-              aria-describedby="consultCountryPlaceholder">
-              <option value="" disabled>Select your country</option>
-              <option value="SA" selected>Saudi Arabia</option>
-              <option value="US">United States</option>
-              <option value="UK">United Kingdom</option>
-              <option value="AE">United Arab Emirates</option>
-              <option value="EG">Egypt</option>
-              <option value="QA">Qatar</option>
-              <option value="KW">Kuwait</option>
-              <option value="OM">Oman</option>
-              <option value="BH">Bahrain</option>
-              <option value="JO">Jordan</option>
-            </select>
-            <span id="consultCountryPlaceholder" class="visually-hidden">Select your country</span>
-          </div>
-          <div class="mb-3">
-            <label for="consultAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your full address"
-              rows="4" aria-describedby="addressPlaceholder"></input>
-            <span id="addressPlaceholder" class="visually-hidden">Enter your full address</span>
-          </div>
-          <div class="mb-3">
             <label for="consultMessage" class="form-label">Message</label>
             <textarea class="form-control" id="consultMessage" name="message" rows="3"
               placeholder="Describe your consultation needs" aria-describedby="consultMessagePlaceholder"></textarea>
             <span id="consultMessagePlaceholder" class="visually-hidden">Describe your consultation needs</span>
           </div>
-          <div class="modal-footer d-flex justify-content-between align-items-baseline p-0">
+          <div class="modal-footer d-flex justify-content-between flex-column  align-items-center p-0">
             <div class="mt-3">
               <label class="policy-checkbox">
                 <input type="checkbox" id="policy-agree" name="policy_agree" required
@@ -151,10 +127,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
               </label>
               <span id="policyPlaceholder" class="visually-hidden">Agree to the policies</span>
             </div>
-            <div class="d-flex">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-submit" id="consultationSubmit">Send Request</button>
-            </div>
+            <button type="submit" class="btn btn-submit w-100" id="consultationSubmit">Send Request</button>
           </div>
         </form>
       </div>
