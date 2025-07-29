@@ -11,7 +11,7 @@
       </p>
       <div class="contact-location-btns" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         <button class="btn btn-gold">Request Consultation</button>
-        <a href="about.php" class="btn btn-outline-contact">Contact Us</a>
+        <a href="contact.php" class="btn btn-outline-contact">Contact Us</a>
       </div>
     </div>
     <div class="contact-location-right" data-aos="fade-left" data-aos-duration="1000">

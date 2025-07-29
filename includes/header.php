@@ -55,7 +55,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
   <div id="sideNav" class="side-nav">
     <div class="side-nav-header">
       <a class="navbar-brand px-3" href="Home.php">
-        CONSULTING <span class="contact-info-nav"></span>
+        Consulting <span class="contact-info-nav"></span>
       </a>
       <button class="close-btn" id="sideNavClose" aria-label="Close navigation">&times;</button>
     </div>

@@ -22,7 +22,7 @@ include 'includes/breadcrumb.php';
         <a href="https://wa.me/966123456789" class="contact-social-link" target="_blank">Chat Now</a>
       </div>
       <div class="contact-social-card">
-         
+
         <svg class="w-[48px] contact-social-icon h-[48px] text-gray-800 dark:text-white" aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="none" viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"
@@ -159,6 +159,44 @@ include 'includes/breadcrumb.php';
     margin-bottom: 15px;
     animation: pulse 2s infinite ease-in-out;
   }
+
+  .contact-social-card:nth-child(1) .contact-social-icon {
+    color: var(--green);
+  }
+
+  .contact-social-card:nth-child(2) .contact-social-icon {
+    color: var(--dark-blue);
+    /* Phone */
+  }
+
+  .contact-social-card:nth-child(3) .contact-social-icon {
+    color: var(--gold);
+    /* Email */
+  }
+  .contact-social-card:nth-child(1) .contact-social-link {
+  background-color: var(--green);
+}
+
+.contact-social-card:nth-child(2) .contact-social-link {
+  background-color: var(--dark-blue);
+}
+
+.contact-social-card:nth-child(3) .contact-social-link {
+  background-color: var(--gold);
+}
+.contact-social-card:nth-child(1) .contact-social-link:hover {
+  background-color: #1DA851; /* Darker green */
+}
+
+.contact-social-card:nth-child(2) .contact-social-link:hover {
+  background-color: #2E5D9F; /* Darker blue */
+}
+
+.contact-social-card:nth-child(3) .contact-social-link:hover {
+  background-color: var(--nav-link-active); /* Already defined */
+}
+
+
 
   @keyframes pulse {
 

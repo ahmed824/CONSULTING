@@ -16,38 +16,6 @@ include 'includes/breadcrumb.php';
                 tailored for your business success and growth.</p>
         </header>
 
-        <!-- Stats Section -->
-        <section class="stats-section mb-5" data-aos="fade-up">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <div class="stat-label">Happy Clients</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="stat-item">
-                            <span class="stat-number">15+</span>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="stat-item">
-                            <span class="stat-number">99%</span>
-                            <div class="stat-label">Accuracy Rate</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="stat-item">
-                            <span class="stat-number">24/7</span>
-                            <div class="stat-label">Support</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="services-overview mb-5">
             <div class="row">
                 <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">

@@ -3206,19 +3206,20 @@ div#consultationModal {
 }
 
 .apply-btn {
-  background: transparent;
-  border: 2px solid var(--gold);
-  color: var(--gold);
+  background: var(--green);
+  color: var(--white);
   padding: 12px 20px;
   border-radius: 50px;
   font-weight: 500;
   cursor: pointer;
+  border: 1px solid transparent;
   transition: all 0.3s;
 }
 
 .apply-btn:hover {
-  background: var(--gold);
-  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
 }
 
 .card-brand {
