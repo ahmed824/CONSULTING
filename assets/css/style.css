@@ -2761,15 +2761,15 @@ div#consultationModal {
 /* === Breadcrumb Styles === */
 .breadcrumb-nav {
   padding: 16px 0;
-  background-image: url("../images/img2.png");
+  background-image: url(../images/img2.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
   height: 350px;
-  top: -112px;
-  margin-top: -1px;
+  margin-top: -113px;
+  margin-bottom: 80px;
 }
 
 .breadcrumb-nav::before {
