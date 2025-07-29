@@ -1,7 +1,7 @@
-<?php 
+<?php
 $page_title = 'Contact Us - Professional Consulting Services';
 $page_description = 'Get in touch with our expert consulting team. We serve clients across multiple regions in Saudi Arabia with comprehensive advisory services in legal, financial, and business domains.';
-include 'includes/header.php'; 
+include 'includes/header.php';
 ?>
 <?php
 $breadcrumb_items = [
@@ -22,13 +22,20 @@ include 'includes/breadcrumb.php';
         <a href="https://wa.me/966123456789" class="contact-social-link" target="_blank">Chat Now</a>
       </div>
       <div class="contact-social-card">
-        <i class="fas fa-phone contact-social-icon"></i>
+         
+        <svg class="w-[48px] contact-social-icon h-[48px] text-gray-800 dark:text-white" aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"
+            d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z" />
+        </svg>
+
+
         <h3 class="contact-social-title">Mobile</h3>
         <p class="contact-social-info">+966 987 654 321</p>
         <a href="tel:+966987654321" class="contact-social-link">Call Now</a>
       </div>
       <div class="contact-social-card">
-        <i class="fas fa-envelope contact-social-icon"></i>
+        <i class="fa-regular fa-envelope contact-social-icon"></i>
         <h3 class="contact-social-title">Email</h3>
         <p class="contact-social-info">info@example.com</p>
         <a href="mailto:info@example.com" class="contact-social-link">Email Us</a>
@@ -130,15 +137,16 @@ include 'includes/breadcrumb.php';
   }
 
   .contact-social-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  flex: 1;
-  width: 100%;
-  border: 1px solid rgba(78, 124, 169, 0.4); /* بديل خفيف للظل */
-  transition: all 0.3s ease;
-}
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    flex: 1;
+    width: 100%;
+    border: 1px solid rgba(78, 124, 169, 0.4);
+    /* بديل خفيف للظل */
+    transition: all 0.3s ease;
+  }
 
   .contact-social-card:hover {
     transform: translateY(-8px);

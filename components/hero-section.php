@@ -25,7 +25,7 @@
       <div class="hero-btns" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         <button class="btn btn-gold">Request Consultation</button>
         <div class="circle"><i class="fa-solid fa-arrow-right-long"></i></div>
-        <a href="#" class="btn btn-outline-hero">Contact Us </a>
+        <a href="contact.php" class="btn btn-outline-hero">Contact Us </a>
       </div>
     </div>
     <div class="hero-right" data-aos="fade-left" data-aos-duration="1000">

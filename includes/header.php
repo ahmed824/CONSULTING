@@ -36,7 +36,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
           <li class="nav-item"><a class="nav-link nav-home" href="Home.php">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="clients.php">Clients</a></li>
+          <li class="nav-item"><a class="nav-link" href="packages.php">Packages</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
         </ul>
         <!-- Lang switch and CTA for large screens -->
@@ -63,7 +63,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
       <li class="nav-item"><a class="nav-link nav-home" href="Home.php">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
       <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
-      <li class="nav-item"><a class="nav-link" href="clients.php">Clients</a></li>
+      <li class="nav-item"><a class="nav-link" href="packages.php">Packages</a></li>
       <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
     </ul>
     <div class="lang-switch mt-4">
