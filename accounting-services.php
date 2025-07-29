@@ -8,38 +8,37 @@ $breadcrumb_items = [
 include 'includes/breadcrumb.php';
 ?>
 
-
 <main class="accounting-services-page py-5">
     <div class="container">
-        <header class="text-center mb-5 fade-in-up">
+        <header class="text-center mb-5" data-aos="fade-up">
             <h1 class="page-title">Professional Accounting Services</h1>
             <p class="lead text-muted">Streamline your financial operations with our expert accounting solutions
                 tailored for your business success and growth.</p>
         </header>
 
         <!-- Stats Section -->
-        <section class="stats-section mb-5">
+        <section class="stats-section mb-5" data-aos="fade-up">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
                         <div class="stat-item">
                             <span class="stat-number">500+</span>
                             <div class="stat-label">Happy Clients</div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
                         <div class="stat-item">
                             <span class="stat-number">15+</span>
                             <div class="stat-label">Years Experience</div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
                         <div class="stat-item">
                             <span class="stat-number">99%</span>
                             <div class="stat-label">Accuracy Rate</div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
                         <div class="stat-item">
                             <span class="stat-number">24/7</span>
                             <div class="stat-label">Support</div>
@@ -51,7 +50,7 @@ include 'includes/breadcrumb.php';
 
         <section class="services-overview mb-5">
             <div class="row">
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card p-4 fade-in-up">
                         <h2 class="service-title">Bookkeeping Services</h2>
                         <p>Accurate and timely bookkeeping to keep your financial records organized and compliant with
@@ -64,7 +63,7 @@ include 'includes/breadcrumb.php';
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-card p-4 fade-in-up">
                         <h2 class="service-title">Tax Preparation & Planning</h2>
                         <p>Maximize deductions and ensure compliance with our comprehensive tax services and strategic
@@ -77,7 +76,7 @@ include 'includes/breadcrumb.php';
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-card p-4 fade-in-up">
                         <h2 class="service-title">Payroll Management</h2>
                         <p>Simplify payroll processing with our efficient, secure, and compliant payroll solutions.</p>
@@ -89,7 +88,7 @@ include 'includes/breadcrumb.php';
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-card p-4 fade-in-up">
                         <h2 class="service-title">Financial Consulting</h2>
                         <p>Strategic financial advice to optimize your performance, drive growth, and achieve your
@@ -106,25 +105,25 @@ include 'includes/breadcrumb.php';
         </section>
 
         <!-- Process Section -->
-        <section class="process-section">
+        <section class="process-section" data-aos="fade-up">
             <div class="text-center mb-4">
                 <h2 class="mb-3" style="color: var(--dark-blue); font-weight: 700;">Our Proven Process</h2>
                 <p class="lead text-muted">Simple steps to get your accounting needs handled professionally</p>
             </div>
             <div class="process-steps">
-                <div class="process-step">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
                     <div class="step-number">1</div>
                     <h3 class="step-title">Initial Consultation</h3>
                     <p class="step-description">We discuss your business needs and financial goals to create a
                         customized solution.</p>
                 </div>
-                <div class="process-step">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
                     <div class="step-number">2</div>
                     <h3 class="step-title">Service Setup</h3>
                     <p class="step-description">Our team configures your accounting systems and processes for maximum
                         efficiency.</p>
                 </div>
-                <div class="process-step">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
                     <div class="step-number">3</div>
                     <h3 class="step-title">Ongoing Support</h3>
                     <p class="step-description">Receive continuous support and regular financial insights to drive your
@@ -133,7 +132,7 @@ include 'includes/breadcrumb.php';
             </div>
         </section>
 
-        <section class="cta-section text-center py-5">
+        <section class="cta-section text-center py-5" data-aos="fade-up" data-aos-delay="200">
             <h2>Get Started Today</h2>
             <p class="mb-4">Contact us to learn how our accounting services can streamline your business operations and
                 drive growth.</p>
