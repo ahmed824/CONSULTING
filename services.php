@@ -4,7 +4,7 @@
   ['label' => 'Services']
 ];
 include 'includes/breadcrumb.php'; ?>
-<div class="services-page py-5 overflow-hidden">
+<div class="services-page pb-5 overflow-hidden">
   <div class="container position-relative">
     <h2 class="text-center mb-5">Our Services</h2>
     <div class=" categories-bg-gradient">
