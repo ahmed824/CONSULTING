@@ -4049,3 +4049,7 @@ policy-checkbox {
   scrollbar-width: thin;
   scrollbar-color: var(--gold) var(--white);
 }
+
+.about-page button.btn.btn-gold {
+  display: none;
+}
