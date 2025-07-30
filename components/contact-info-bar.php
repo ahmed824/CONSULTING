@@ -13,7 +13,9 @@
                     fill="white" />
             </svg>
         </span>
-        <span class="contact-info-text">Your location is written here in this space.</span>
+        <a href="https://www.google.com/maps" target="_blank" class="contact-info-text">
+            Your location is written here in this space.
+        </a>
     </div>
     <span class="contact-info-separator"></span>
     <div class="contact-info-item">
@@ -24,7 +26,9 @@
                     fill="white" />
             </svg>
         </span>
-        <span class="contact-info-text">consulting@gmail.com</span>
+        <a href="mailto:consulting@gmail.com" class="contact-info-text">
+            consulting@gmail.com
+        </a>
     </div>
     <span class="contact-info-separator"></span>
     <div class="contact-info-item">
@@ -35,7 +39,9 @@
                     fill="white" />
             </svg>
         </span>
-        <span class="contact-info-text">+966 123 456 0789</span>
+        <a href="tel:+9661234560789" class="contact-info-text">
+            +966 123 456 0789
+        </a>
     </div>
     <span class="contact-info-separator"></span>
     <div class="contact-info-item">
@@ -61,6 +67,8 @@
             </svg>
 
         </span>
-        <span class="contact-info-text">+966 123 456 0789</span>
+        <a href="tel:+9661234560789" class="contact-info-text">
+            +966 123 456 0789
+        </a>
     </div>
 </div>

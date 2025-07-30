@@ -4398,3 +4398,6 @@ textarea.contact-form-control {
   border: none;
   cursor: pointer;
 }
+.contact-info-item a {
+  text-decoration: none;
+}
