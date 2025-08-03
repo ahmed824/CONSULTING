@@ -3840,6 +3840,7 @@ policy-checkbox {
 .accounting-services-page {
   background-color: var(--white);
   color: var(--dark-blue);
+  padding-bottom:80px;
 }
 
 .accounting-services-page .page-title {
