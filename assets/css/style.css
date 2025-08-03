@@ -3135,7 +3135,7 @@ div#consultationModal {
   flex-direction: column;
   justify-content: space-between;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/hero.jpg");
+    url("../images/hero1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
