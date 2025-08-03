@@ -1,5 +1,5 @@
 <section class="our-categories">
-    <div class="container-fluid position-relative">
+    <div class="container position-relative">
         <div class="categories-bg-gradient">
             <div class="gradient1"></div>
             <div class="gradient2"></div>

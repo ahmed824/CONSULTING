@@ -22,7 +22,7 @@
         We provide comprehensive advisory services in legal, financial, and business domains, helping you make informed
         decisions backed by deep expertise and market insight.
       </div>
-      <div class="hero-btns" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+      <div class="hero-btns gap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         <button class="btn btn-gold">Request Consultation</button>
         <div class="circle"><i class="fa-solid fa-arrow-right-long"></i></div>
         <a href="contact.php" class="btn btn-outline-hero">Contact Us </a>

@@ -1,12 +1,5 @@
 <?php include 'includes/header.php'; ?>
-<?php
-$breadcrumb_items = [
-  ['label' => 'Home', 'url' => 'home.php'],
-  ['label' => 'Services', 'url' => 'services.php'],
-  ['label' => 'Payment']
-];
-include 'includes/breadcrumb.php';
-?>
+
 <style>
   /* Modal Styles */
   .modal-overlay {
@@ -369,13 +362,13 @@ include 'includes/breadcrumb.php';
                 <button type="button" class="apply-btn">Apply</button>
               </div>
             </div>
-
-            <!-- Payment Actions -->
-            <div class="payment-actions">
-              <button type="button" class="btn btn-cancel">Cancel</button>
-              <button type="submit" class="btn btn-primary" id="payment-submit">Make Payment</button>
-            </div>
           </form>
+        </div>
+
+        <!-- Payment Actions -->
+        <div class="payment-actions">
+          <button type="button" class="btn btn-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="payment-submit" form="payment-form">Make Payment</button>
         </div>
       </div>
     </div>
@@ -553,7 +546,7 @@ include 'includes/breadcrumb.php';
 
           const { jsPDF } = window.jspdf;
           const doc = new jsPDF();
-          
+
           // Company colors
           const primaryColor = [35, 100, 93]; // Dark blue-green
           const secondaryColor = [113, 140, 141]; // Light gray-blue
@@ -562,42 +555,42 @@ include 'includes/breadcrumb.php';
           // Header section with company branding
           doc.setFillColor(...primaryColor);
           doc.rect(0, 0, 210, 40, 'F');
-          
+
           doc.setTextColor(255, 255, 255);
           doc.setFontSize(24);
           doc.setFont(undefined, 'bold');
           doc.text('PAYMENT RECEIPT', 20, 25);
-          
+
           doc.setFontSize(12);
           doc.setFont(undefined, 'normal');
-          doc.text(`Date: ${new Date().toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+          doc.text(`Date: ${new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
           })}`, 140, 25);
-          
+
           // Transaction ID
           const transactionId = document.getElementById('transaction-id').textContent;
           doc.text(`Transaction ID: ${transactionId}`, 140, 32);
 
           // Reset text color for body
           doc.setTextColor(...textColor);
-          
+
           // Customer Information Section
           let yPos = 60;
           doc.setFontSize(16);
           doc.setFont(undefined, 'bold');
           doc.text('Customer Information', 20, yPos);
-          
+
           // Underline
           doc.setDrawColor(...primaryColor);
           doc.setLineWidth(0.5);
           doc.line(20, yPos + 2, 80, yPos + 2);
-          
+
           yPos += 15;
           doc.setFontSize(11);
           doc.setFont(undefined, 'normal');
-          
+
           const customerInfo = [
             ['Name:', document.getElementById('consultName').value || 'N/A'],
             ['Email:', document.getElementById('email').value || 'N/A'],
@@ -605,7 +598,7 @@ include 'includes/breadcrumb.php';
             ['City:', document.getElementById('city').value || 'N/A'],
             ['Address:', document.getElementById('address').value || 'N/A']
           ];
-          
+
           customerInfo.forEach(([label, value]) => {
             doc.setFont(undefined, 'bold');
             doc.text(label, 20, yPos);
@@ -619,32 +612,32 @@ include 'includes/breadcrumb.php';
           doc.setFontSize(16);
           doc.setFont(undefined, 'bold');
           doc.text('Package Details', 20, yPos);
-          
+
           doc.setDrawColor(...primaryColor);
           doc.line(20, yPos + 2, 70, yPos + 2);
-          
+
           yPos += 15;
           doc.setFontSize(11);
           doc.setFont(undefined, 'normal');
-          
+
           doc.setFont(undefined, 'bold');
           doc.text('Package:', 20, yPos);
           doc.setFont(undefined, 'normal');
           doc.text('Standard Package (5/7 Services)', 50, yPos);
           yPos += 10;
-          
+
           doc.setFont(undefined, 'bold');
           doc.text('Services Included:', 20, yPos);
           yPos += 8;
-          
+
           const services = [
             '• Bookkeeping & Financial Reporting',
-            '• Tax Preparation & Planning', 
+            '• Tax Preparation & Planning',
             '• Payroll Management',
             '• Financial Consulting',
             '• Dedicated Account Manager'
           ];
-          
+
           doc.setFont(undefined, 'normal');
           services.forEach(service => {
             doc.text(service, 25, yPos);
@@ -655,29 +648,29 @@ include 'includes/breadcrumb.php';
           yPos += 15;
           const boxHeight = 35;
           const boxWidth = 170;
-          
+
           // Box background
           doc.setFillColor(248, 249, 250);
           doc.rect(20, yPos - 5, boxWidth, boxHeight, 'F');
-          
+
           // Box border
           doc.setDrawColor(...secondaryColor);
           doc.setLineWidth(1);
           doc.rect(20, yPos - 5, boxWidth, boxHeight);
-          
+
           doc.setFontSize(14);
           doc.setFont(undefined, 'bold');
           doc.text('Payment Summary', 25, yPos + 5);
-          
+
           yPos += 15;
           doc.setFontSize(11);
-          
+
           const paymentDetails = [
             ['Amount:', 'SAR 56.00'],
             ['Payment Method:', document.getElementById('modal-payment-method').textContent],
             ['Status:', 'PAID']
           ];
-          
+
           paymentDetails.forEach(([label, value]) => {
             doc.setFont(undefined, 'normal');
             doc.text(label, 25, yPos);
@@ -706,10 +699,10 @@ include 'includes/breadcrumb.php';
           // Generate timestamp for filename
           const timestamp = new Date().toISOString().slice(0, 19).replace(/[-:]/g, '').replace('T', '_');
           const filename = `Payment_Receipt_${timestamp}.pdf`;
-          
+
           // Save the PDF
           doc.save(filename);
-          
+
         } catch (error) {
           console.error('Error generating PDF:', error);
           alert('Error generating PDF. Please try again.');
@@ -728,11 +721,11 @@ include 'includes/breadcrumb.php';
       if (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          
+
           // Generate random transaction ID
           const transactionId = '#TXN' + Date.now().toString().slice(-9);
           document.getElementById('transaction-id').textContent = transactionId;
-          
+
           const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
           const paymentMethodDisplay = document.getElementById('modal-payment-method');
           if (paymentMethodDisplay) {

@@ -374,6 +374,41 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// ===== PRICING TOGGLE FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', function () {
+  const pricingToggle = document.getElementById('pricing-toggle');
+  const toggleLabels = document.querySelectorAll('.toggle-label');
+  const monthlyPrices = document.querySelectorAll('.price-monthly');
+  const annuallyPrices = document.querySelectorAll('.price-annually');
+
+  if (pricingToggle) {
+    pricingToggle.addEventListener('change', function() {
+      const isAnnually = this.checked;
+      
+      // Update toggle labels
+      toggleLabels.forEach((label, index) => {
+        if (index === 0) { // Monthly label
+          label.classList.toggle('active', !isAnnually);
+        } else if (index === 1) { // Annually label
+          label.classList.toggle('active', isAnnually);
+        }
+      });
+
+      // Update price displays
+      monthlyPrices.forEach(price => {
+        price.classList.toggle('hidden', isAnnually);
+      });
+
+      annuallyPrices.forEach(price => {
+        price.classList.toggle('active', isAnnually);
+      });
+    });
+
+    // Set initial state
+    toggleLabels[0].classList.add('active'); // Monthly is active by default
+  }
+});
+
 // ===== CONTACT FORM FUNCTIONALITY =====
 document.addEventListener('DOMContentLoaded', function () {
   const contactForm = document.getElementById('contact-form');

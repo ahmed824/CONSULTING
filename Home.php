@@ -10,11 +10,16 @@
 <!-- Our Categories Section (Service Categories) -->
 <?php include 'components/our-categories-section.php'; ?>
 
-<!-- Business Packages Section -->
-<?php include 'components/business.php'; ?>
+<div class="packages-section">
+    <div class="container-packages">
 
-<!-- Custom Select/Package Builder Section -->
-<?php include 'components/select-section.php'; ?>
+        <!-- Business Packages Section -->
+        <?php include 'components/business.php'; ?>
+
+        <!-- Custom Select/Package Builder Section -->
+        <?php include 'components/select-section.php'; ?>
+    </div>
+</div>
 
 <!-- Clients Section (Trusted By) -->
 <?php include 'components/clients.php'; ?>

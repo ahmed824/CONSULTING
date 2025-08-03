@@ -115,12 +115,14 @@ p {
   padding: 0.25rem 1rem;
   font-size: 18px;
   color: var(--white);
+  opacity: 0.5;
 }
 
 .btn-lang.active {
   background: #ffffff0a;
   color: var(--white);
   transition: background 0.2s, color 0.2s;
+  opacity: 1;
 }
 
 .btn-lang:hover {
@@ -144,7 +146,9 @@ p {
   color: var(--white);
 }
 .navbar-toggler-icon {
-  width: 1em !important;
+  color: var(--white);
+  background-image: none !important;
+  font-size: 24px !important;
 }
 
 /* Hero Section */
@@ -806,8 +810,11 @@ p {
   display: flex;
   gap: 50px;
   flex-direction: column-reverse;
+  padding-bottom: 80px;
 }
-
+.about-page .stats-header {
+  margin-bottom: 0;
+}
 .categories-grid .third {
   display: flex;
   flex-direction: column;
@@ -995,7 +1002,147 @@ p {
 .business-section {
   padding: 60px 0 40px 0;
   text-align: center;
-  background: #fff;
+}
+.packages-section .container-packages {
+  background: #2a8c8212;
+  border-radius: 20px;
+  padding: 0 20px; /* Adjust as needed */
+  margin: 60px auto;
+  max-width: 1300px; /* Optional: ensures it doesn't stretch too wide on large screens */
+  box-sizing: border-box;
+}
+/* Pricing Toggle Styles */
+.pricing-toggle-container {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.pricing-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 8px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toggle-label {
+  color: var(--dark-blue);
+  font-weight: 600;
+  padding: 0 20px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label.active {
+  color: var(--gold);
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 42, 58, 0.2);
+  transition: 0.3s;
+  border-radius: 30px;
+  border: 2px solid rgba(26, 42, 58, 0.3);
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--gold);
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: rgba(182, 143, 14, 0.3);
+  border-color: var(--gold);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(30px);
+}
+
+.save-badge {
+  background: linear-gradient(135deg, var(--green), #1f6f5f);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 15px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Price Display Styles */
+.price-monthly {
+  display: inline;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.price-annually {
+  display: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.price-annually.active {
+  display: inline;
+  animation: fadeInUp 0.3s ease;
+}
+
+.price-monthly.hidden {
+  display: none;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .business-header .business-welcome {
@@ -1258,7 +1405,6 @@ p {
 .custom-package-section {
   padding: 100px 0;
   position: relative;
-  background: #fff;
   overflow-x: clip;
 }
 
@@ -2111,6 +2257,9 @@ div#consultationModal {
   font-size: 1.8rem;
   color: #bfa046;
   padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-toggler:focus {
@@ -2492,6 +2641,42 @@ div#consultationModal {
   .business-header .business-welcome {
     font-size: 1rem;
     margin-bottom: 4px;
+  }
+
+  .pricing-toggle-container {
+    margin-bottom: 30px;
+  }
+
+  .pricing-toggle {
+    padding: 6px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .toggle-label {
+    font-size: 14px;
+    padding: 0 15px;
+  }
+
+  .toggle-switch {
+    width: 50px;
+    height: 25px;
+    margin: 0 8px;
+  }
+
+  .toggle-slider:before {
+    height: 18px;
+    width: 18px;
+  }
+
+  .toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(25px);
+  }
+
+  .save-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    margin-left: 10px;
   }
 
   .business-cards {
@@ -2943,12 +3128,17 @@ div#consultationModal {
 
 /* Package Details Section */
 .package-section {
-  background: var(--dark-blue);
   color: var(--white);
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .package-header {
@@ -3042,36 +3232,6 @@ div#consultationModal {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-}
-
-.toggle-switch {
-  position: relative;
-  width: 50px;
-  height: 26px;
-  background: #4a5568;
-  border-radius: 26px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.toggle-switch.active {
-  background: var(--green);
-}
-
-.toggle-switch::after {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background: var(--white);
-  border-radius: 50%;
-  top: 2px;
-  right: 2px;
-  transition: transform 0.3s ease;
-}
-
-.toggle-switch.active::after {
-  transform: translateX(-24px);
 }
 
 .auto-renewal-status {
@@ -3265,7 +3425,7 @@ div#consultationModal {
 
 .payment-actions {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   margin-top: 30px;
   justify-content: flex-end;
 }
@@ -3537,6 +3697,9 @@ policy-checkbox {
     background-position: 200% 50%;
   }
 }
+.services-page {
+  padding-bottom: 80px;
+}
 .services-page h2 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -3568,6 +3731,111 @@ policy-checkbox {
   max-width: 1900px;
   margin: 0 auto;
   justify-content: center;
+}
+
+/* Service Card Link Styles */
+.service-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.3s ease !important;
+}
+
+.service-card-link:hover {
+  border-radius: 16px;
+}
+
+.service-card-link:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Coming Soon Notification Styles */
+.coming-soon-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--dark-blue);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  max-width: 300px;
+  border-left: 4px solid var(--gold);
+}
+
+.coming-soon-notification.show {
+  transform: translateX(0);
+}
+
+.notification-content {
+  position: relative;
+}
+
+.notification-content h4 {
+  margin: 0 0 8px 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.notification-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--nav-link);
+}
+
+.notification-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--gold);
+  color: var(--dark-blue);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.notification-close:hover {
+  background: var(--nav-link-active);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .coming-soon-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    transform: translateY(-100%);
+  }
+
+  .coming-soon-notification.show {
+    transform: translateY(0);
+  }
+
+  .service-card-link:hover {
+    transform: translateY(-4px);
+  }
+
+  .service-card-link.disabled-card:hover {
+    transform: translateY(-2px);
+  }
 }
 .accounting-services-page {
   background-color: var(--white);
@@ -4058,7 +4326,7 @@ policy-checkbox {
   display: none;
 }
 .contact-location-section {
-  padding: 0 0 40px 0;
+  padding: 0 0 80px 0;
   color: var(--dark-blue);
 }
 

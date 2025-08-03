@@ -25,7 +25,7 @@ $page_description = isset($page_description) ? $page_description : 'Professional
       <div class="container-fluid justify-content-between align-items-center">
         <!-- Hamburger for mobile -->
         <button class="navbar-toggler d-lg-none" type="button" id="sideNavToggle" aria-label="Open navigation">
-          <span class="navbar-toggler-icon"></span>
+          <i class="fa-solid fa-bars navbar-toggler-icon"></i>
         </button>
         <!-- Logo for large screens -->
         <a class="navbar-brand" href="Home.php">
