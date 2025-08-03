@@ -3112,6 +3112,7 @@ div#consultationModal {
   background: linear-gradient(135deg, var(--dark-blue) 0% 60%, #23645d 100%);
   padding-top: 180px;
   margin-top: -120px;
+  padding-bottom:80px;
 }
 
 .payment-wrapper {
