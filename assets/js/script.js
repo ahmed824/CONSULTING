@@ -382,9 +382,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const annuallyPrices = document.querySelectorAll('.price-annually');
 
   if (pricingToggle) {
-    pricingToggle.addEventListener('change', function() {
+    pricingToggle.addEventListener('change', function () {
       const isAnnually = this.checked;
-      
+
       // Update toggle labels
       toggleLabels.forEach((label, index) => {
         if (index === 0) { // Monthly label
@@ -598,4 +598,403 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
- 
+document.addEventListener('DOMContentLoaded', function () {
+  // Payment method switching
+  const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+  const creditCardSection = document.getElementById('credit-card-section');
+  const paypalSection = document.getElementById('paypal-section');
+  const bankTransferSection = document.getElementById('bank-transfer-section');
+  const cardDetailsRow = document.getElementById('card-details-row');
+
+  function switchPaymentMethod() {
+    const selectedMethodInput = document.querySelector('input[name="payment_method"]:checked');
+    const selectedMethod = selectedMethodInput ? selectedMethodInput.value : 'credit_card';
+
+    if (creditCardSection && paypalSection && bankTransferSection && cardDetailsRow) {
+      creditCardSection.style.display = selectedMethod === 'credit_card' ? 'block' : 'none';
+      paypalSection.style.display = selectedMethod === 'paypal' ? 'block' : 'none';
+      bankTransferSection.style.display = selectedMethod === 'bank_transfer' ? 'block' : 'none';
+      cardDetailsRow.style.display = selectedMethod === 'credit_card' ? 'grid' : 'none';
+
+      // Handle required attributes based on selected payment method
+      const cardNumberInput = document.getElementById('card-number');
+      const expiryDateInput = document.getElementById('expiry-date');
+      const cvvInput = document.getElementById('cvv');
+      const paypalEmailInput = document.getElementById('paypal-email');
+      const accountNumberInput = document.getElementById('account-number');
+      const routingNumberInput = document.getElementById('routing-number');
+
+      if (selectedMethod === 'credit_card') {
+        cardNumberInput.required = true;
+        expiryDateInput.required = true;
+        cvvInput.required = true;
+        if (paypalEmailInput) paypalEmailInput.required = false;
+        if (accountNumberInput) accountNumberInput.required = false;
+        if (routingNumberInput) routingNumberInput.required = false;
+      } else if (selectedMethod === 'paypal') {
+        if (paypalEmailInput) paypalEmailInput.required = true;
+        cardNumberInput.required = false;
+        expiryDateInput.required = false;
+        cvvInput.required = false;
+        if (accountNumberInput) accountNumberInput.required = false;
+        if (routingNumberInput) routingNumberInput.required = false;
+      } else if (selectedMethod === 'bank_transfer') {
+        if (accountNumberInput) accountNumberInput.required = true;
+        if (routingNumberInput) routingNumberInput.required = true;
+        cardNumberInput.required = false;
+        expiryDateInput.required = false;
+        cvvInput.required = false;
+        if (paypalEmailInput) paypalEmailInput.required = false;
+      }
+    }
+  }
+
+  if (paymentMethods.length > 0) {
+    paymentMethods.forEach(method => {
+      method.addEventListener('change', switchPaymentMethod);
+    });
+    switchPaymentMethod();
+  }
+
+  // Card number formatting and brand detection
+  const cardNumberInput = document.getElementById('card-number');
+  const cardBrandSpan = document.getElementById('card-brand');
+
+  if (cardNumberInput && cardBrandSpan) {
+    cardNumberInput.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      e.target.value = formattedValue;
+
+      if (value.startsWith('4')) {
+        cardBrandSpan.textContent = 'VISA';
+      } else if (value.startsWith('5') || value.startsWith('2')) {
+        cardBrandSpan.textContent = 'MASTERCARD';
+      } else if (value.startsWith('3')) {
+        cardBrandSpan.textContent = 'AMEX';
+      } else {
+        cardBrandSpan.textContent = 'CARD';
+      }
+    });
+  }
+
+  // Expiry date formatting
+  const expiryInput = document.getElementById('expiry-date');
+  if (expiryInput) {
+    expiryInput.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2, 4) + '/' + value.substring(4, 6);
+      }
+      e.target.value = value;
+    });
+  }
+
+  // CVV input restriction
+  const cvvInput = document.getElementById('cvv');
+  if (cvvInput) {
+    cvvInput.addEventListener('input', function (e) {
+      e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+    });
+  }
+
+  // Apply discount functionality
+  const applyBtn = document.querySelector('.apply-btn');
+  if (applyBtn) {
+    applyBtn.addEventListener('click', function () {
+      alert('Discount applied successfully!');
+    });
+  }
+
+  // Modal functionality
+  const modal = document.getElementById('success-modal');
+  const closeModalBtn = document.getElementById('close-payment-modal');
+  const downloadBillBtn = document.getElementById('download-bill');
+
+  // Close modal
+  closeModalBtn.addEventListener('click', function () {
+    modal.classList.remove('active');
+  });
+
+  // Enhanced PDF generation with better formatting
+  function generatePDF() {
+    try {
+      // Disable button during generation
+      downloadBillBtn.disabled = true;
+      downloadBillBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Company colors
+      const primaryColor = [35, 100, 93]; // Dark blue-green
+      const secondaryColor = [113, 140, 141]; // Light gray-blue
+      const textColor = [44, 62, 80]; // Dark gray
+
+      // Header section with company branding
+      doc.setFillColor(...primaryColor);
+      doc.rect(0, 0, 210, 40, 'F');
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(24);
+      doc.setFont(undefined, 'bold');
+      doc.text('PAYMENT RECEIPT', 20, 25);
+
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'normal');
+      doc.text(`Date: ${new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })}`, 140, 25);
+
+      // Transaction ID
+      const transactionId = document.getElementById('transaction-id').textContent;
+      doc.text(`Transaction ID: ${transactionId}`, 140, 32);
+
+      // Reset text color for body
+      doc.setTextColor(...textColor);
+
+      // Customer Information Section
+      let yPos = 60;
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text('Customer Information', 20, yPos);
+
+      // Underline
+      doc.setDrawColor(...primaryColor);
+      doc.setLineWidth(0.5);
+      doc.line(20, yPos + 2, 80, yPos + 2);
+
+      yPos += 15;
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'normal');
+
+      const customerInfo = [
+        ['Name:', document.getElementById('consultName').value || 'N/A'],
+        ['Email:', document.getElementById('email').value || 'N/A'],
+        ['Phone:', document.getElementById('consultPhone').value || 'N/A'],
+        ['City:', document.getElementById('city').value || 'N/A'],
+        ['Address:', document.getElementById('address').value || 'N/A']
+      ];
+
+      customerInfo.forEach(([label, value]) => {
+        doc.setFont(undefined, 'bold');
+        doc.text(label, 20, yPos);
+        doc.setFont(undefined, 'normal');
+        doc.text(value, 50, yPos);
+        yPos += 8;
+      });
+
+      // Package Details Section
+      yPos += 10;
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text('Package Details', 20, yPos);
+
+      doc.setDrawColor(...primaryColor);
+      doc.line(20, yPos + 2, 70, yPos + 2);
+
+      yPos += 15;
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'normal');
+
+      doc.setFont(undefined, 'bold');
+      doc.text('Package:', 20, yPos);
+      doc.setFont(undefined, 'normal');
+      doc.text('Standard Package (5/7 Services)', 50, yPos);
+      yPos += 10;
+
+      doc.setFont(undefined, 'bold');
+      doc.text('Services Included:', 20, yPos);
+      yPos += 8;
+
+      const services = [
+        '• Bookkeeping & Financial Reporting',
+        '• Tax Preparation & Planning',
+        '• Payroll Management',
+        '• Financial Consulting',
+        '• Dedicated Account Manager'
+      ];
+
+      doc.setFont(undefined, 'normal');
+      services.forEach(service => {
+        doc.text(service, 25, yPos);
+        yPos += 6;
+      });
+
+      // Payment Summary Box
+      yPos += 15;
+      const boxHeight = 35;
+      const boxWidth = 170;
+
+      // Box background
+      doc.setFillColor(248, 249, 250);
+      doc.rect(20, yPos - 5, boxWidth, boxHeight, 'F');
+
+      // Box border
+      doc.setDrawColor(...secondaryColor);
+      doc.setLineWidth(1);
+      doc.rect(20, yPos - 5, boxWidth, boxHeight);
+
+      doc.setFontSize(14);
+      doc.setFont(undefined, 'bold');
+      doc.text('Payment Summary', 25, yPos + 5);
+
+      yPos += 15;
+      doc.setFontSize(11);
+
+      const paymentDetails = [
+        ['Amount:', 'SAR 56.00'],
+        ['Payment Method:', document.getElementById('modal-payment-method').textContent],
+        ['Status:', 'PAID']
+      ];
+
+      paymentDetails.forEach(([label, value]) => {
+        doc.setFont(undefined, 'normal');
+        doc.text(label, 25, yPos);
+        doc.setFont(undefined, 'bold');
+        doc.text(value, 140, yPos);
+        yPos += 7;
+      });
+
+      // Total amount highlight
+      yPos += 5;
+      doc.setFillColor(...primaryColor);
+      doc.rect(25, yPos - 3, 140, 12, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('TOTAL PAID: SAR 56.00', 30, yPos + 4);
+
+      // Footer
+      doc.setTextColor(...textColor);
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      doc.text('Thank you for your business!', 20, 260);
+      doc.text('For support, contact us at support@company.com', 20, 268);
+      doc.text('This is a computer-generated receipt.', 20, 276);
+
+      // Generate timestamp for filename
+      const timestamp = new Date().toISOString().slice(0, 19).replace(/[-:]/g, '').replace('T', '_');
+      const filename = `Payment_Receipt_${timestamp}.pdf`;
+
+      // Save the PDF
+      doc.save(filename);
+
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Error generating PDF. Please try again.');
+    } finally {
+      // Re-enable button
+      downloadBillBtn.disabled = false;
+      downloadBillBtn.innerHTML = '<i class="fas fa-download"></i> Download PDF Bill';
+    }
+  }
+
+  // Download bill functionality
+  downloadBillBtn.addEventListener('click', generatePDF);
+
+  // Form submission
+  const form = document.getElementById('payment-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Generate random transaction ID
+      const transactionId = '#TXN' + Date.now().toString().slice(-9);
+      document.getElementById('transaction-id').textContent = transactionId;
+
+      const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+      const paymentMethodDisplay = document.getElementById('modal-payment-method');
+      if (paymentMethodDisplay) {
+        paymentMethodDisplay.textContent =
+          selectedMethod === 'credit_card' ? 'Credit Card' :
+            selectedMethod === 'paypal' ? 'PayPal' :
+              'Bank Transfer';
+      }
+      modal.classList.add('active');
+    });
+  }
+
+  // Close modal when clicking outside
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // File Upload Functionality
+  const fileInput = document.getElementById('commercial_register');
+  const filePreview = document.getElementById('file-preview');
+  const previewImage = document.getElementById('preview-image');
+  const fileName = document.getElementById('file-name');
+  const removeFile = document.getElementById('remove-file');
+  const uploadLabel = document.querySelector('.file-upload-label');
+  const uploadContainer = document.querySelector('.file-upload-container');
+
+  if (fileInput) {
+    // Handle file selection
+    fileInput.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        handleFileUpload(file);
+      }
+    });
+
+    // Handle drag and drop
+    uploadLabel.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      uploadLabel.classList.add('dragover');
+    });
+
+    uploadLabel.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      uploadLabel.classList.remove('dragover');
+    });
+
+    uploadLabel.addEventListener('drop', function (e) {
+      e.preventDefault();
+      uploadLabel.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        fileInput.files = e.dataTransfer.files;
+        handleFileUpload(file);
+      }
+    });
+
+    // Remove file functionality
+    removeFile.addEventListener('click', function () {
+      fileInput.value = '';
+      filePreview.style.display = 'none';
+      uploadContainer.classList.remove('error');
+    });
+  }
+
+  function handleFileUpload(file) {
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+      uploadContainer.classList.add('error');
+      alert('Please upload a valid file type (JPG, PNG, GIF, or PDF)');
+      return;
+    }
+
+    uploadContainer.classList.remove('error');
+    fileName.textContent = file.name;
+
+    // Show preview for images
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        previewImage.src = e.target.result;
+        filePreview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // For PDF files, show a PDF icon instead of preview
+      previewImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRkY2NjY2Ii8+CjxwYXRoIGQ9Ik0yMCAyMEg4MFY4MEgyMFYyMFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zMCAzMEg3MFY3MEgzMFYzMFoiIGZpbGw9IiNGRjY2NjYiLz4KPHN2ZyB4PSIzNSIgeT0iMzUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTQgMkg2QzQuOSAyIDQgMi45IDQgNFYyMEM0IDIxLjEgNC45IDIyIDYgMjJIMThDMjAuMjEgMjIgMjIgMjAuMjEgMjIgMThWN0wyMCAySDI0VjZIMTZWMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xNCAxNEgxMFYxNkgxNFYxNFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xNCAxOEgxMFYyMEgxNFYxOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xOCAxNEgxNlYxNkgxOFYxNFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xOCAxOEgxNlYyMEgxOFYxOFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo8L3N2Zz4K';
+      filePreview.style.display = 'block';
+    }
+  }
+});
