@@ -6,7 +6,7 @@
   <div class="footer-main">
     <div class="hero-bg-layer layer1"></div>
     <div class="hero-bg-layer layer2"></div>
-    <div class="footer-content">
+    <div class="footer-content px-1">
       <img src="assets/images/footer-logo.svg" alt="Consulting Logo" class="footer-logo-img" />
       <p class="footer-desc">
         We provide comprehensive advisory services in legal, financial, and business domains, helping you make informed

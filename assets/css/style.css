@@ -1800,6 +1800,9 @@ p {
     height: auto;
     border-radius: 10px;
   }
+  .packages-section .container-packages {
+    padding-top: 32px;
+  }
 }
 
 /* === Footer Styles === */
