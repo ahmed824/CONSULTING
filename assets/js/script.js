@@ -238,12 +238,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pricingToggle) {
     pricingToggle.addEventListener('change', () => {
       const isAnnual = pricingToggle.checked;
-      priceAmount.textContent = isAnnual ? '44.80' : '56';
+      priceAmount.textContent = isAnnual ? '537' : '56';
       packageSubtitle.textContent = isAnnual ? '6/7 Services' : '5/7 Services';
       featureTaxOptimization.classList.toggle('disabled', !isAnnual);
       featureTaxOptimization.textContent = isAnnual ? '✓' : '○';
-      modalAmount.textContent = `SAR ${isAnnual ? '44.80' : '56.00'}`;
-      modalTotalPaid.textContent = `SAR ${isAnnual ? '44.80' : '56.00'}`;
+      modalAmount.textContent = `SAR ${isAnnual ? '537' : '56.00'}`;
+      modalTotalPaid.textContent = `SAR ${isAnnual ? '537' : '56.00'}`;
       saveBadge.style.display = isAnnual ? 'inline' : 'none';
     });
   }
