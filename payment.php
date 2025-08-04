@@ -1,5 +1,4 @@
 <?php include 'includes/header.php'; ?>
- 
 
 <!-- Add jsPDF library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -16,23 +15,39 @@
             <div class="package-icon">⚡</div>
             <div>
               <h2 class="package-title">Standard Package</h2>
-              <p class="package-subtitle">5/7 Services</p>
+              <p class="package-subtitle" id="package-subtitle">5/7 Services</p>
             </div>
           </div>
-          <div class="package-price">
-            <?php include 'includes/Reyal.php'; ?>56
+          <div class="package-price" id="package-price">
+            <?php include 'includes/Reyal.php'; ?><span id="price-amount">56</span>
+            <span class="save-badge ms-3" id="save-badge" style="display: none;">(Save 20%)</span>
           </div>
-          <ul class="package-features">
+          <ul class="package-features" id="package-features">
             <li><span class="feature-icon">✓</span> Bookkeeping & Financial Reporting</li>
             <li><span class="feature-icon">✓</span> Tax Preparation & Planning</li>
             <li><span class="feature-icon">✓</span> Payroll Management</li>
             <li><span class="feature-icon">✓</span> Financial Consulting</li>
             <li><span class="feature-icon">✓</span> Dedicated Account Manager</li>
-            <li><span class="feature-icon disabled">○</span> Advanced Tax Optimization</li>
+            <li><span class="feature-icon disabled" id="feature-tax-optimization">○</span> Advanced Tax Optimization
+            </li>
             <li><span class="feature-icon disabled">○</span> International Compliance</li>
           </ul>
         </div>
         <div class="auto-renewal">
+          <!-- Pricing Toggle -->
+          <div class="pricing-toggle-container">
+            <div class="content-toggle">
+              <h3>Package Preference</h3>
+              <p class="toggle-description">Choose how you’d like to be billed. Annual billing gives you a better rate
+                and extra savings compared to monthly payments.</p>
+            </div>
+            <div class="pricing-toggle-payment">
+              <label class="toggle-switch">
+                <input type="checkbox" id="pricing-toggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
           <div class="mt-0">
             <label class="policy-checkbox">
               <input type="checkbox" id="policy-agree" name="policy_agree" required>
@@ -95,7 +110,8 @@
             <div class="form-group">
               <label for="commercial_register" class="form-label">Commercial Register</label>
               <div class="file-upload-container">
-                <input type="file" class="file-upload-input" id="commercial_register" name="commercial_register" accept="image/*,.pdf" required>
+                <input type="file" class="file-upload-input" id="commercial_register" name="commercial_register"
+                  accept="image/*,.pdf" required>
                 <label for="commercial_register" class="file-upload-label">
                   <div class="upload-icon">
                     <i class="fas fa-cloud-upload-alt"></i>
@@ -233,7 +249,7 @@
         </div>
         <div class="summary-row">
           <span>Amount:</span>
-          <span>SAR 56.00</span>
+          <span id="modal-amount">SAR 56.00</span>
         </div>
         <div class="summary-row">
           <span>Payment Method:</span>
@@ -245,7 +261,7 @@
         </div>
         <div class="summary-row">
           <span>Total Paid:</span>
-          <span>SAR 56.00</span>
+          <span id="modal-total-paid">SAR 56.00</span>
         </div>
       </div>
 
@@ -258,7 +274,7 @@
     </div>
   </div>
 
- 
+
 </body>
 
 </html>

@@ -1066,7 +1066,7 @@ p {
   background-color: rgba(26, 42, 58, 0.2);
   transition: 0.3s;
   border-radius: 30px;
-  border: 2px solid rgba(26, 42, 58, 0.3);
+  border: 2px solid var(--dark-blue);
 }
 
 .toggle-slider:before {
@@ -1315,7 +1315,7 @@ p {
 }
 
 .card-btn {
-  width: 90%;
+  width: 100%;
   padding: 12px 0;
   border-radius: 30px;
   font-size: 16px;
@@ -1331,12 +1331,14 @@ p {
   background: var(--green);
   color: #fff;
 }
+.business-card .btn-green:hover {
+  background: #1e6b63;
+}
 
 .btn-blue {
   background: var(--dark-blue);
   color: #fff;
 }
-
 .btn-blue:hover {
   background: #223a54;
 }
@@ -1799,6 +1801,9 @@ p {
     width: 100%;
     height: auto;
     border-radius: 10px;
+  }
+  .packages-section .container-packages {
+    padding-top: 32px;
   }
 }
 
@@ -3134,8 +3139,7 @@ div#consultationModal {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/hero1.jpg");
+  background-image: linear-gradient(rgb(0 0 0 / 75%), rgb(0 0 10 / 90%)), url(../images/hero1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -3196,6 +3200,7 @@ div#consultationModal {
   gap: 12px;
   padding: 8px 0;
   font-size: 15px;
+  font-family: "Cairo", sans-serif;
 }
 
 .feature-icon {
@@ -3427,7 +3432,7 @@ div#consultationModal {
 .payment-actions {
   display: flex;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 20px;
   justify-content: flex-end;
 }
 
@@ -5024,4 +5029,17 @@ textarea.contact-form-control {
   .upload-formats {
     font-size: 11px;
   }
+}
+.auto-renewal .pricing-toggle-container {
+  display: flex;
+  text-align: left;
+  margin-bottom: 18px !important;
+}
+.pricing-toggle-container h3 {
+  color: var(--gold);
+}
+.payment-container .package-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
