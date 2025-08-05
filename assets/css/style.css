@@ -274,8 +274,8 @@ p {
 }
 
 .hero-btns .circle {
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: var(--white);
   color: var(--dark-blue);
@@ -285,7 +285,7 @@ p {
 }
 
 .hero-btns .circle i {
-  font-size: 2rem;
+  font-size: 1.3rem;
   transform: rotate(315deg);
 }
 
@@ -3139,7 +3139,8 @@ div#consultationModal {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: linear-gradient(rgb(0 0 0 / 75%), rgb(0 0 10 / 90%)), url(../images/hero1.jpg);
+  background-image: linear-gradient(rgb(0 0 0 / 75%), rgb(0 0 10 / 90%)),
+    url(../images/hero1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -5046,4 +5047,16 @@ textarea.contact-form-control {
 .annual-text {
   color: var(--green);
   font-weight: 600;
+}
+/* Styling for the fa-arrow-right-long icon inside the .circle div */
+.hero-btns .circle {
+  opacity: 0;
+  transform: translateX(-10px); /* Start slightly to the left */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for opacity and movement */
+}
+
+/* Hover effect on btn-gold to trigger icon animation */
+.hero-btns .btn-gold:hover + .circle {
+  opacity: 1;
+  transform: translateX(0); /* Move to original position */
 }
