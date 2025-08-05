@@ -38,7 +38,7 @@
           <div class="pricing-toggle-container">
             <div class="content-toggle">
               <h3>Package Preference</h3>
-              <p class="toggle-description">Choose how you’d like to be billed. Annual billing gives you a better rate
+              <p class="toggle-description">Choose how you’d like to be billed. <span class="annual-text">Annual</span> billing gives you a better rate
                 and extra savings compared to monthly payments.</p>
             </div>
             <div class="pricing-toggle-payment">
