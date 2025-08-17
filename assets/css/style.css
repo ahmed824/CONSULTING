@@ -2725,6 +2725,12 @@ div#consultationModal {
   }
 }
 
+@media (max-width: 1024px) {
+  .custom-package-select {
+    max-width: 220px;
+  }
+}
+
 @media (max-width: 900px) {
   .custom-package-card {
     flex-direction: column-reverse;
@@ -2751,6 +2757,7 @@ div#consultationModal {
     max-width: 100%;
     font-size: 1rem;
     padding: 10px 14px;
+    margin: 0 !important;
   }
 
   .custom-package-image {
@@ -2766,6 +2773,11 @@ div#consultationModal {
 
   .check-gif {
     height: 120px;
+  }
+  .custom-package-content .btn-submit {
+    margin-top: 12px;
+    font-size: 14px;
+    width: 100%;
   }
 }
 
@@ -2800,6 +2812,7 @@ div#consultationModal {
   .custom-package-select {
     font-size: 0.95rem;
     padding: 8px 10px;
+    margin: 0 !important;
   }
 
   .icon-bg {
