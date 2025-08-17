@@ -1481,6 +1481,7 @@ p {
   background-position: right 18px center;
   background-size: 20px 20px;
   padding-right: 48px;
+  max-width: 250px;
 }
 
 .price-original {
@@ -3102,6 +3103,7 @@ div#consultationModal {
 .custom-package-actions {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 600px) {

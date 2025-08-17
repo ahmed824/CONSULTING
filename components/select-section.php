@@ -19,14 +19,37 @@
                     We provide comprehensive advisory services in legal, financial, and business domains.
                 </p>
                 <div class="custom-package-actions">
-                    <select class="custom-package-select" required>
-                        <option value="" disabled selected hidden>Select Duration</option>
-                        <option value="1">1 Month</option>
-                        <option value="3">3 Months</option>
-                        <option value="6">6 Months</option>
-                        <option value="12">12 Months</option>
+                    <select id="service-select" class="custom-package-select" required>
+                        <option value="" disabled selected hidden>Select Service</option>
+                        <option value="tax">Tax and Zakat</option>
+                        <option value="accounting">Accounting</option>
                     </select>
-                    <button type="button" class="btn btn-submit ms-3" >Request Package</button>
+                    <select id="duration-select" class="custom-package-select" style="display: none;" required>
+                        <option value="" disabled selected hidden>Package Duration</option>
+                        <option value="1">Monthly</option>
+                        <option value="3">Yearly</option>
+                    </select>
+                    <select id="days-select" class="custom-package-select mb-3" style="display: none;" required>
+                        <option value="" disabled selected hidden>Number of Days</option>
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                        <option value="4">4 Days</option>
+                        <option value="5">5 Days</option>
+                        <option value="6">6 Days</option>
+                    </select>
+                    <select id="hours-select" class="custom-package-select mb-3" style="display: none;" required>
+                        <option value="" disabled selected hidden>Number of Hours</option>
+                        <option value="1">1 Hour</option>
+                        <option value="2">2 Hours</option>
+                        <option value="3">3 Hours</option>
+                        <option value="4">4 Hours</option>
+                        <option value="5">5 Hours</option>
+                        <option value="6">6 Hours</option>
+                        <option value="7">7 Hours</option>
+                        <option value="8">8 Hours</option>
+                    </select>
+                    <button type="button" class="btn btn-submit">Request Package</button>
                 </div>
             </div>
             <div class="custom-package-image" data-aos="fade-left" data-aos-delay="500">
@@ -40,7 +63,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const select = document.querySelector('.custom-package-select');
+        const serviceSelect = document.getElementById('service-select');
+        const daysSelect = document.getElementById('days-select');
+        const hoursSelect = document.getElementById('hours-select');
+        const durationSelect = document.getElementById('duration-select');
         const priceAmount = document.querySelector('.price-amount');
         const priceOriginal = document.querySelector('.price-original');
 
@@ -51,7 +77,22 @@
             '12': { sale: 270, original: 300 }
         };
 
-        select.addEventListener('change', function () {
+        serviceSelect.addEventListener('change', function () {
+            if (this.value === 'accounting') {
+                daysSelect.style.display = 'block';
+                hoursSelect.style.display = 'block';
+                durationSelect.style.display = 'block';
+            } else {
+                daysSelect.style.display = 'none';
+                hoursSelect.style.display = 'none';
+                durationSelect.style.display = 'none';
+                // Reset prices to default when tax is selected
+                priceAmount.textContent = '27';
+                priceOriginal.textContent = '30';
+            }
+        });
+
+        durationSelect.addEventListener('change', function () {
             const selectedDuration = this.value;
             if (prices[selectedDuration]) {
                 priceAmount.textContent = prices[selectedDuration].sale;
